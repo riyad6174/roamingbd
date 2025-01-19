@@ -10,7 +10,7 @@ import Header11 from '../../../components/header/header-3';
 import Overview from '../../../components/tour-single/Overview';
 import TopBreadCrumb from '../../../components/tour-single/TopBreadCrumb';
 
-import DefaultFooter from '../../../components/footer/default';
+import DefaultFooter from '../../../components/footer/footer-7';
 
 import SidebarPackageType from '../../../components/tour-single/SidebarPackageType';
 import PackageBookinProperties from '../../../components/package/PackageBookinProperties';

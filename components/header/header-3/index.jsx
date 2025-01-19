@@ -56,37 +56,6 @@ const Header1 = () => {
 
             <div className='col-auto text-white'>
               <div className='d-flex items-center gap-3'>
-                <li className='menu-item-has-children -has-mega-menu'>
-                  <a href='#'>
-                    <span className='mr-10'>App</span>
-                    {/* <i className='icon icon-chevron-sm-down' /> */}
-                  </a>
-                  {/* <div className='mega'>
-            <CategoriesMegaMenu />
-          </div> */}
-                </li>
-                <li className='menu-item-has-children -has-mega-menu'>
-                  <a href='#'>
-                    <span className='mr-10'>Customer Service</span>
-                    {/* <i className='icon icon-chevron-sm-down' /> */}
-                  </a>
-                  {/* <div className='mega'>
-            <CategoriesMegaMenu />
-          </div> */}
-                </li>
-                <div className='row x-gap-10 items-center xxl:d-none'>
-                  <CurrenctyMegaMenu textClass='text-white' />
-                  {/* End Megamenu for Currencty */}
-
-                  {/* Start vertical devider*/}
-                  <div className='col-auto'>
-                    <div className='w-1 h-20 bg-white-20' />
-                  </div>
-                  {/* End vertical devider*/}
-
-                  {/* <LanguageMegaMenu textClass='text-dark-1' /> */}
-                  {/* End Megamenu for Language */}
-                </div>
                 {/* End language and currency selector */}
 
                 <div className='d-flex items-center ml-8 is-menu-opened-hide md:d-none'>

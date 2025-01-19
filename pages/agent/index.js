@@ -206,7 +206,7 @@ const home_3 = () => {
                     Roaming BD Supplier Platform has not authorized any agency
                     to carry out promotion services. Application procedures and
                     related fees are subject to the official website of Roaming
-                    BD Supplier Platform and are at the platform's sole
+                    BD Supplier Platform and are at the platform&apos;s sole
                     discretion.
                   </li>
                   <li className='list-group-item border-0'>
@@ -214,8 +214,8 @@ const home_3 = () => {
                     <ul>
                       <li>
                         Reject applications based on factors including but not
-                        limited to product demand, supplier's business status,
-                        and the service level provided.
+                        limited to product demand, supplier&apos;s business
+                        status, and the service level provided.
                       </li>
                       <li>
                         Require the supplier to provide other qualifications
@@ -243,10 +243,10 @@ const home_3 = () => {
                     agreement with the supplier.
                   </li>
                   <li className='list-group-item border-0'>
-                    Suppliers applying to join must provide the applicant's
+                    Suppliers applying to join must provide the applicant&apos;s
                     personal information, including identity information and
-                    mobile number. The contact person's name, mobile number,
-                    email address, etc. must also be provided to receive
+                    mobile number. The contact person&apos;s name, mobile
+                    number, email address, etc. must also be provided to receive
                     subsequent cooperation notifications and more. Please ensure
                     that the information entered is authentic and valid. Roaming
                     BD will protect the identity information you enter through
@@ -453,7 +453,7 @@ const home_3 = () => {
                     <h2 className='sectionTitle__title text-center'>
                       Why Choose Roaming BD
                     </h2>
-                    <p>By joining us, you'll be backed by the following</p>
+                    <p>By joining us, you&apos;ll be backed by the following</p>
                   </div>
                 </div>
                 {/* End col-auto */}

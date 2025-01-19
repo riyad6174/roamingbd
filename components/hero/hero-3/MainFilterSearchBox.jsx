@@ -50,7 +50,7 @@ const MainFilterSearchBox = () => {
             <div className='button-item'>
               <button
                 className='mainSearch__submit button -dark-1 py-15 px-35 h-60 col-12 rounded-4 bg-glass  text-blue-1'
-                onClick={() => Router.push('/hotel/hotel-list-v3')}
+                onClick={() => Router.push('/hotel/hotel-list-v1')}
               >
                 <i className='icon-search text-20 mr-10' />
                 Search

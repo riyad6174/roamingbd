@@ -1,19 +1,19 @@
 const Map = () => {
   return (
     <div
-      className="flex-center"
+      className='flex-center'
       style={{
-        backgroundImage: "url(/img/general/map.png)",
-        height: "180px",
+        backgroundImage: 'url(/img/general/map.png)',
+        height: '200px',
       }}
     >
-      <button
-        className="button py-15 px-24 -blue-1 bg-white text-dark-1 absolute"
-        data-x-click="mapFilter"
+      {/* <button
+        className='button py-10 px-10 -blue-1 bg-white text-dark-1 absolute'
+        data-x-click='mapFilter'
       >
-        <i className="icon-destination text-22 mr-10" />
+        <i className='icon-destination text-22 mr-10' />
         Show on map
-      </button>
+      </button> */}
     </div>
   );
 };

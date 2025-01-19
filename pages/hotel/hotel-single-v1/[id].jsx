@@ -28,6 +28,17 @@ import Hotels2 from '../../../components/hotels/Hotels2';
 import CallToActions from '../../../components/common/CallToActions';
 import DefaultFooter from '../../../components/footer/default';
 import Link from 'next/link';
+import SidebarRight2 from '../../../components/hotel-single/SidebarRight2';
+import RatingBox from '../../../components/hotel-single/RatingBox';
+import PropertyHighlights2 from '../../../components/hotel-single/PropertyHighlights2';
+import PropertyAmenities from '../../../components/hotel-single/PropertyHighlights2';
+import PropertySurrundings from '../../../components/hotel-single/PropertySurrundings';
+import AdditionalFacts from '../../../components/hotel-single/AdditionalFacts';
+import ImportantNotes from '../../../components/hotel-single/ImportantNotes';
+import AvailableRooms2 from '../../../components/hotel-single/AvailableRooms2';
+import PopularRoutes from '../../../components/home/home-10/PopularRoutes';
+import Copyright from '../../../components/footer/footer-7/Copyright';
+import Footer7 from '../../../components/footer/footer-7';
 
 const HotelSingleV1Dynamic = () => {
   const [isOpen, setOpen] = useState(false);
@@ -267,21 +278,25 @@ const HotelSingleV1Dynamic = () => {
                   <h3 className='text-22 fw-500'>Highlighted Facilities</h3>
                   <PropertyHighlights />
                 </div>
+                <div className='col-12'>
+                  <h3 className='text-22 fw-500'>Important - Please Note:</h3>
+                  <ImportantNotes />
+                </div>
                 {/* End .col-12  Overview */}
 
-                <div className='col-12'>
+                {/* <div className='col-12'>
                   <h3 className='text-22 fw-500 pt-40 border-top-light'>
                     Most Popular Facilities
                   </h3>
                   <div className='row y-gap-10 pt-20'>
                     <PopularFacilities />
                   </div>
-                </div>
+                </div> */}
                 {/* End .col-12 Most Popular Facilities */}
 
-                <div className='col-12'>
+                {/* <div className='col-12'>
                   <RatingTag />
-                </div>
+                </div> */}
                 {/* End .col-12 This property is in high demand! */}
               </div>
               {/* End .row */}
@@ -289,7 +304,10 @@ const HotelSingleV1Dynamic = () => {
             {/* End .col-xl-8 */}
 
             <div className='col-xl-4'>
-              <SidebarRight hotel={hotel} />
+              <SidebarRight2 />
+              <PropertyAmenities />
+              <PropertySurrundings />
+              <AdditionalFacts hotel={hotel} />
             </div>
             {/* End .col-xl-4 */}
           </div>
@@ -299,81 +317,41 @@ const HotelSingleV1Dynamic = () => {
       </section>
       {/* End single page content */}
 
+      <section id='rooms' className='pt-40'>
+        <div className=' container py-3 px-20 col-12 bg-blue-1 d-flex gap-4 justify-start text-white align-center S'>
+          <span>Overview</span>
+          <span>Rooms</span>
+          <span>Amenities</span>
+          <span>Location</span>
+          <span>Policies</span>
+        </div>
+      </section>
+
       <section id='rooms' className='pt-30'>
         <div className='container'>
           <div className='row pb-20'>
-            <div className='col-auto'>
-              <h3 className='text-22 fw-500'>Available Rooms</h3>
+            <div className='col-md-6'>
+              <AvailableRooms2 hotel={hotel} />
+            </div>
+            <div className='col-6'>
+              <AvailableRooms2 hotel={hotel} />
             </div>
           </div>
           {/* End .row */}
-          <AvailableRooms hotel={hotel} />
         </div>
         {/* End .container */}
       </section>
       {/* End Available Rooms */}
 
-      <section className='pt-40' id='reviews'>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-12'>
-              <h3 className='text-22 fw-500'>Guest reviews</h3>
-            </div>
-          </div>
-          {/* End .row */}
-
-          <ReviewProgress />
-          {/* End review with progress */}
-
-          <div className='pt-40'>
-            <DetailsReview />
-            {/* End review with details */}
-          </div>
-
-          <div className='row pt-30'>
-            <div className='col-auto'>
-              <a href='#' className='button -md -outline-blue-1 text-blue-1'>
-                Show all 116 reviews{' '}
-                <div className='icon-arrow-top-right ml-15'></div>
-              </a>
-            </div>
-          </div>
-          {/* End .row */}
-        </div>
-        {/* End .container */}
-        {/* End container */}
-      </section>
       {/* End Review section */}
 
-      <section className='pt-40'>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-xl-8 col-lg-10'>
-              <div className='row'>
-                <div className='col-auto'>
-                  <h3 className='text-22 fw-500'>Leave a Reply</h3>
-                  <p className='text-15 text-dark-1 mt-5'>
-                    Your email address will not be published.
-                  </p>
-                </div>
-              </div>
-              {/* End .row */}
-
-              <ReplyFormReview />
-              {/* End ReplyFormReview */}
-
-              <ReplyForm />
-            </div>
-          </div>
-        </div>
-      </section>
       {/* End Reply Comment box section */}
 
       <section className='mt-40' id='facilities'>
         <div className='container'>
           <div className='row x-gap-40 y-gap-40'>
             <div className='col-12'>
-              <h3 className='text-22 fw-500'>Facilities of this Hotel</h3>
+              <h3 className='text-22 fw-500'>Hotel & Room facilities</h3>
               <div className='row x-gap-40 y-gap-40 pt-20'>
                 <Facilities />
               </div>
@@ -387,7 +365,7 @@ const HotelSingleV1Dynamic = () => {
       </section>
       {/* End facilites section */}
 
-      <section className='pt-40'>
+      {/* <section className='pt-40'>
         <div className='container'>
           <div className='row'>
             <div className='col-12'>
@@ -417,39 +395,88 @@ const HotelSingleV1Dynamic = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       {/* End health &  safety measures section */}
 
-      <section className='pt-40'>
+      {/* End hotel surroundings */}
+
+      <section className='layout-pt-md bg-light mt-30  layout-pb-lg'>
         <div className='container'>
-          <div className='row'>
-            <div className='col-12'>
-              <h3 className='text-22 fw-500'>Hotel surroundings</h3>
+          <div className='row justify-between items-end'>
+            <div className='col-auto'>
+              <div className='sectionTitle -md'>
+                <h2 className='sectionTitle__title'>Similar hotels Nearby</h2>
+                <p className=' sectionTitle__text mt-5 sm:mt-0'>
+                  Luxurious or budget-friendly hotels, villas or resorts, browse
+                  accommodations at Roaming BD <br /> that meet the need. Book
+                  Long-term or short-term accommodation from our hotel deals
+                </p>
+              </div>
             </div>
+            {/* End .col */}
+
+            {/* <div className='col-auto'>
+              <Link
+                href='#'
+                className='button -md -blue-1 bg-blue-1-05 text-blue-1'
+              >
+                More <div className='icon-arrow-top-right ml-15' />
+              </Link>
+            </div> */}
           </div>
           {/* End .row */}
 
-          <div className='row x-gap-50 y-gap-30 pt-20'>
-            <Surroundings />
+          <div className='relative mt-40 sm:mt-20'>
+            <PopularRoutes />
           </div>
-          {/* End .row */}
+          {/* End relative */}
         </div>
         {/* End .container */}
       </section>
-      {/* End hotel surroundings */}
 
       <section className='pt-40'>
         <div className='container'>
           <div className='pt-40 border-top-light'>
             <div className='row'>
               <div className='col-12'>
-                <h3 className='text-22 fw-500'>Some helpful facts</h3>
+                <h3 className='text-22 fw-500'>Property Description</h3>
               </div>
             </div>
             {/* End .row */}
 
             <div className='row x-gap-50 y-gap-30 pt-20'>
-              <HelpfulFacts />
+              <div className='col-12 text-start d-flex gap-5 fw-bold'>
+                <span>Opened 21th Oct</span>
+                <span>Renovated 21th Oct</span>
+                <span>Number of Rooms 20</span>
+              </div>
+              <div className='col-12 d-flex gap-3 flex-column'>
+                <p className='text-15'>
+                  When you stay at Blossom Hotel Dhaka in Dhaka, you&apos;ll be
+                  connected to the convention center, within a 10-minute walk of
+                  Embassy of the United States of America and Embassy of
+                  Thailand. This hotel is 0.7 mi (1.2 km) from Embassy of Turkey
+                  and 0.8 mi (1.2 km) from Embassy of South Korea.
+                </p>
+                <p className='text-15'>
+                  Enjoy recreation amenities such as a 24-hour health club or
+                  take in the view from a rooftop terrace. Additional features
+                  at this hotel include complimentary wireless internet access,
+                  concierge services, and barbecue grills.
+                </p>
+                <p className='text-15'>
+                  Enjoy a meal at the restaurant, or stay in and take advantage
+                  of the hotel&apos;s 24-hour room service. Mingle with other
+                  guests at the complimentary reception, held daily. A
+                  complimentary local cuisine breakfast is served daily from
+                  6:30 AM to 10:30 AM.
+                </p>
+                <p className='text-15'>
+                  Featured amenities include a 24-hour business center, express
+                  check-in, and express check-out. A shuttle from the airport to
+                  the hotel is provided for a surcharge (available 24 hours),
+                </p>
+              </div>
             </div>
             {/* End .row */}
           </div>
@@ -463,18 +490,15 @@ const HotelSingleV1Dynamic = () => {
         <div className='container'>
           <div className='pt-40 border-top-light'>
             <div className='row y-gap-20'>
-              <div className='col-lg-4'>
-                <h2 className='text-22 fw-500'>
-                  FAQs about
-                  <br /> The Crown Hotel
-                </h2>
-              </div>
               {/* End .row */}
 
               <div className='col-lg-8'>
                 <div className='accordion -simple row y-gap-20 js-accordion'>
                   <Faq />
                 </div>
+              </div>
+              <div className='col-lg-4'>
+                <img src='/img/hotels/1.png' alt='faq' className='rounded-4' />
               </div>
               {/* End .col */}
             </div>
@@ -486,37 +510,14 @@ const HotelSingleV1Dynamic = () => {
       </section>
       {/* End Faq about sections */}
 
-      <section className='layout-pt-md layout-pb-lg'>
-        <div className='container'>
-          <div className='row justify-center text-center'>
-            <div className='col-auto'>
-              <div className='sectionTitle -md'>
-                <h2 className='sectionTitle__title'>
-                  Popular properties similar to The Crown Hotel
-                </h2>
-                <p className=' sectionTitle__text mt-5 sm:mt-0'>
-                  Interdum et malesuada fames ac ante ipsum
-                </p>
-              </div>
-              {/* End sectionTitle */}
-            </div>
-            {/* End .col */}
-          </div>
-          {/* End .row */}
-
-          <div className='pt-40 sm:pt-20 item_gap-x30'>
-            <Hotels2 />
-          </div>
-          {/* End slide hotel */}
-        </div>
-        {/* End .container */}
-      </section>
       {/* End similar hotel */}
 
-      <CallToActions />
       {/* End Call To Actions Section */}
 
-      <DefaultFooter />
+      <Footer7 />
+      <div className='py-20 bg-blue-1 text-white text-center'>
+        <Copyright />
+      </div>
     </>
   );
 };

@@ -42,21 +42,28 @@ const Menu = ({ style = '' }) => {
         </li>
         {/* End categories menu items */}
 
-        <li className={router.pathname === '/destinations' ? 'current' : ''}>
-          <Link href='/destinations'>Visa</Link>
+        <li className={router.pathname === '/visa' ? 'current' : ''}>
+          <Link href='/visa'>Visa</Link>
+        </li>
+        <li
+          className={
+            router.pathname === '/package/tour-package' ? 'current' : ''
+          }
+        >
+          <Link href='/package/tour-package'>Tour Package</Link>
         </li>
         {/* End Destinatinos single menu */}
 
-        <li
+        {/* <li
           className={`${
             isActiveParentChaild(blogItems, router.asPath) ? 'current' : ''
           } menu-item-has-children`}
         >
           <a href='#'>
             <span className='mr-10'>Tour Package</span>
-            {/* <i className='icon icon-chevron-sm-down' /> */}
+            <i className='icon icon-chevron-sm-down' />
           </a>
-          {/* <ul className='subnav'>
+          <ul className='subnav'>
             {blogItems.map((menu, i) => (
               <li
                 key={i}
@@ -67,8 +74,8 @@ const Menu = ({ style = '' }) => {
                 <Link href={menu.routePath}>{menu.name}</Link>
               </li>
             ))}
-          </ul> */}
-        </li>
+          </ul>
+        </li> */}
         {/* End blogIems */}
 
         {/* <li

@@ -7,10 +7,11 @@ const Overview = () => {
         <h3 className='text-18 fw-bold mb-5'>Description</h3>
         <h3 className='text-18'>Day 1</h3>
         <p>
-          Arrive in Cox's Bazar at 9 AM, meet your guide, and transfer to your
-          hotel. Check-in and relax. Visit the Radiant Fish World, Bangladesh's
-          largest sea aquarium, then explore the beach and Rakhain Market. Enjoy
-          local cuisine for lunch and dinner before resting at your hotel.
+          Arrive in Cox&apos;s Bazar at 9 AM, meet your guide, and transfer to
+          your hotel. Check-in and relax. Visit the Radiant Fish World,
+          Bangladesh&apos;s largest sea aquarium, then explore the beach and
+          Rakhain Market. Enjoy local cuisine for lunch and dinner before
+          resting at your hotel.
         </p>
         <h5 className='mt-5'>Highlights:</h5>
         <ul className='list-disc ml-4'>
@@ -24,13 +25,13 @@ const Overview = () => {
         <h3 className='text-18'>Day 2</h3>
         <p>
           Start your day with a hearty breakfast at your hotel, then head to
-          Himchari, a beautiful spot 18 km south of Cox's Bazar. Enjoy views of
-          the world's longest unbroken sea beach and explore the area, often
-          used for picnics and film shoots. The road offers stunning views of
-          the sea and hills. Next, visit Inani Beach, known for its unique coral
-          stones. Don't miss the hidden gem of Pathorkhani in Jaliapalong. Enjoy
-          local cuisine for lunch and dinner before heading back to your hotel
-          for the night.
+          Himchari, a beautiful spot 18 km south of Cox&apos;s Bazar. Enjoy
+          views of the world&apos;s longest unbroken sea beach and explore the
+          area, often used for picnics and film shoots. The road offers stunning
+          views of the sea and hills. Next, visit Inani Beach, known for its
+          unique coral stones. Don&apos;t miss the hidden gem of Pathorkhani in
+          Jaliapalong. Enjoy local cuisine for lunch and dinner before heading
+          back to your hotel for the night.
         </p>
         <h5 className='mt-5'>Highlights:</h5>
         <ul className='list-disc ml-4'>
@@ -46,12 +47,12 @@ const Overview = () => {
         <p>
           Cultural Exploration and Departure. Enjoy breakfast at your hotel
           before embarking on a journey to Ramu, a charming Buddhist village
-          located about 14-20 kilometers from Cox's Bazar. Explore the village's
-          rich cultural heritage, including monasteries, khyangs, and pagodas
-          adorned with intricate carvings and statues of Buddha. Enjoy a
-          delicious lunch at a local restaurant before proceeding to Cox's Bazar
-          airport for your return flight to Dhaka. Your unforgettable journey
-          comes to an end, filled with happy memories.
+          located about 14-20 kilometers from Cox&apos;s Bazar. Explore the
+          village&apos;s rich cultural heritage, including monasteries, khyangs,
+          and pagodas adorned with intricate carvings and statues of Buddha.
+          Enjoy a delicious lunch at a local restaurant before proceeding to
+          Cox&apos;s Bazar airport for your return flight to Dhaka. Your
+          unforgettable journey comes to an end, filled with happy memories.
         </p>
         <h5 className='mt-6'>Highlights:</h5>
         <ul className='list-disc ml-4'>

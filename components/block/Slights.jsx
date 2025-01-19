@@ -62,7 +62,7 @@ const Slights = () => {
                     </ul>
                     <p className='small text-muted py-4'>
                       <i className='bi bi-building'></i> Hotel Windy Terrace
-                      (Cox's Bazar)
+                      (Cox&apos;s Bazar)
                     </p>
                   </div>
                   <div className='d-flex flex-column gap-3 justify-content-start align-items-start mt-4'>

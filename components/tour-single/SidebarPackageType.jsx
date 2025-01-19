@@ -10,7 +10,7 @@ const SidebarPackageType = ({ tour }) => {
             {/* First Column */}
             <div className='col-md-4'>
               <h4 className='text-24 uppercase'>Standard </h4>
-              <p className='text-10'>Hotel Windy Terrace (Cox's Bazar)</p>
+              <p className='text-10'>Hotel Windy Terrace (Cox&apos;s Bazar)</p>
             </div>
             {/* Second Column */}
             <div className='col-md-8'>

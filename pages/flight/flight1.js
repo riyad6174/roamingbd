@@ -320,7 +320,6 @@ const home_3 = () => {
         </div>
         {/* End .container */}
       </section>
-      <ParallaxBanner />
 
       <section className='layout-pt-lg layout-pb-lg'>
         <div className='container'>
@@ -355,6 +354,8 @@ const home_3 = () => {
         </div>
         {/* End .container */}
       </section>
+      <ParallaxBanner />
+
       <Footer7 />
       <div className='py-20 bg-blue-1 text-white text-center'>
         <Copyright />

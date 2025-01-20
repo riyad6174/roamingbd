@@ -93,7 +93,7 @@ const HajjPackagePropertyCard = () => {
 
                 <div className=''>
                   <Link
-                    href={`/hotel/hotel-single-v2/${item.id}`}
+                    href={`#`}
                     className='button -md -dark-1 bg-blue-1 text-white mt-40'
                   >
                     Select Offer{' '}

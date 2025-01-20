@@ -5,14 +5,6 @@ import Hero3 from '../../components/hero/hero-3';
 import TopDestinations from '../../components/destinations/TopDestinations';
 import TopDestinations2 from '../../components/home/home-10/TopDestinations';
 
-import Hotels from '../../components/hotels/Hotels2';
-import Link from 'next/link';
-import Tours from '../../components/tours/Tours';
-import Activity from '../../components/activity/Activity';
-import Rentals from '../../components/rentals/Rentals';
-import Cars from '../../components/cars/Cars';
-import Cruise from '../../components/cruise/Cruise';
-import Flights from '../../components/flight/Flights';
 import Footer7 from '../../components/footer/footer-7';
 
 import AddBanner from '../../components/home/home-3/AddBanner';
@@ -243,7 +235,7 @@ const home_3 = () => {
             <div className='col-auto'>
               <div className='sectionTitle -md'>
                 <h2 className='sectionTitle__title'>
-                  Hajj Packages From Bangladesh
+                  Umrah Packages From Bangladesh
                 </h2>
                 <p className=' sectionTitle__text mt-5 sm:mt-0'>
                   Here are some of the Top and Cheap Packages for you during the

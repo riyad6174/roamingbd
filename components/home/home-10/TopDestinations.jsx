@@ -34,7 +34,7 @@ const TopDestinations = () => {
         {destinations10.map((item) => (
           <SwiperSlide key={item.id}>
             <Link
-              href='/tour/tour-list-v2'
+              href='#'
               className='citiesCard -type-1 d-block h-full rounded-4 '
             >
               <div className='citiesCard__image ratio ratio-2:1'>

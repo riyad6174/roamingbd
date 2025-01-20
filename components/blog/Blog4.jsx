@@ -12,10 +12,7 @@ const Blog4 = () => {
           data-aos='fade'
           data-aos-delay={item.delayAnimation}
         >
-          <Link
-            href={`/blog/blog-details/${item.id}`}
-            className='blogCard -type-1 d-block '
-          >
+          <Link href={`#`} className='blogCard -type-1 d-block '>
             <div className='blogCard__image'>
               <div className='ratio ratio-1:1 rounded-4 rounded-8'>
                 <Image

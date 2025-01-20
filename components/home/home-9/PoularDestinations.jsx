@@ -42,7 +42,7 @@ const PoularDestinations = () => {
           data-aos-delay={item.delayAnimation}
         >
           <Link
-            href='/cruise/cruise-list-v2'
+            href='#'
             className='citiesCard -type-5 d-flex justify-content-between align-items-center sm:flex-column sm:items-start px-20 py-20 sm:px-15 sm:py-20 bg-light-2 rounded-4'
           >
             <div className='d-flex flex-column align-items-center  gap-4'>

@@ -18,7 +18,7 @@ module.exports = [
       { name: 'Agent', routerPath: '/agent' },
       { name: 'Hotel List', routerPath: '/hotel/hotel-list-v1' },
       { name: 'Hotel Booking', routerPath: '/hotel/booking-page-v1' },
-      { name: 'Gift Cards', routerPath: '/' },
+      // { name: 'Gift Cards', routerPath: '/' },
     ],
   },
   {

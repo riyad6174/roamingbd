@@ -121,7 +121,7 @@ const PackagePropertyCard = () => {
                   </div>
 
                   <Link
-                    href={`/hotel/hotel-single-v2/${item.id}`}
+                    href={`#`}
                     className='button -md -dark-1 bg-blue-1 text-white mt-24'
                   >
                     Select Offer{' '}

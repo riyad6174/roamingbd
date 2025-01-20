@@ -19,7 +19,7 @@ import Copyright from '../../components/footer/footer-7/Copyright';
 const home_3 = () => {
   return (
     <>
-      <Seo pageTitle='Home-3' />
+      <Seo pageTitle='Home' />
       {/* End Page Title */}
 
       <Header3 />

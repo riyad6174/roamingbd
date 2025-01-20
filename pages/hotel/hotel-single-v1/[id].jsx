@@ -63,7 +63,7 @@ const HotelSingleV1Dynamic = () => {
         onClose={() => setOpen(false)}
       />
 
-      <Seo pageTitle='Hotel Single v1' />
+      <Seo pageTitle='Hotel Details' />
       {/* End Page Title */}
 
       <div className='header-margin'></div>
@@ -129,7 +129,7 @@ const HotelSingleV1Dynamic = () => {
                 </div>
                 <div className='col-auto'>
                   <Link
-                    href='/hotel/booking-page'
+                    href='#'
                     className='button h-50 px-24 -dark-1 bg-blue-1 text-white'
                   >
                     Select Room <div className='icon-arrow-top-right ml-15' />

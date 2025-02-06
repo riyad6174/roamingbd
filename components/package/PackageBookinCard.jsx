@@ -2,15 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const dummyData = {
-  id: 1,
-  title: 'Sea Pearl Beach Resort and Spa Ltd.',
-  location: "Cox's Bazar, Bangladesh",
-  slideImg: ['/img/hotels/1.png'],
-  price: 25000,
-};
-
-const PackageBookingProperty = ({ tour }) => {
+const PackageBookingCard = ({ tour }) => {
   return (
     <div className='container my-5'>
       <div className='card'>
@@ -73,10 +65,20 @@ const PackageBookingProperty = ({ tour }) => {
                   <div className='text-light-1 small'>
                     *this fee is applicable for single person
                   </div>
-                  <div className='fw-500 text-18 py-10 '>
-                    <span className='bg-light py-1 px-2 border text-blue-1'>
-                      BDT {tour?.price}/-
-                    </span>
+                  <div className='d-flex align-items-center justify-content-start gap-2'>
+                    <div className='fw-500 text-18 py-10 '>
+                      <span className='bg-light py-1 px-2 border text-blue-1'>
+                        BDT {tour?.price}/-
+                      </span>
+                    </div>
+                    <Link
+                      href={`/package/package-booking/${tour?.slug}`}
+                      className='fw-500 text-18 py-10 '
+                    >
+                      <span className='btn btn-primary text-white rounded-0 border py-1 px-2 border text-blue-1'>
+                        Procceed Payment
+                      </span>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -89,4 +91,4 @@ const PackageBookingProperty = ({ tour }) => {
   );
 };
 
-export default PackageBookingProperty;
+export default PackageBookingCard;

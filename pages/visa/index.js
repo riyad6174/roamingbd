@@ -2,34 +2,12 @@ import dynamic from 'next/dynamic';
 import Seo from '../../components/common/Seo';
 import Header3 from '../../components/header/header-3';
 import Hero3 from '../../components/hero/hero-3';
-import TopDestinations from '../../components/destinations/TopDestinations';
-import TopDestinations2 from '../../components/home/home-10/TopDestinations';
-
-import Hotels from '../../components/hotels/Hotels2';
 import Link from 'next/link';
-
 import Footer7 from '../../components/footer/footer-7';
-
-import AddBanner from '../../components/home/home-3/AddBanner';
-import WhyChoose from '../../components/home/home-3/WhyChoose';
 import SearchBoxContent from '../../components/hero/hero-9/SearchBoxContent';
-import PopularDestinations from '../../components/destinations/PopularDestinations';
-import PopularDestinations9 from '../../components/home/home-9/PoularDestinations';
-
-import PopularRoutes from '../../components/home/home-10/PopularRoutes';
-import BlockGuide from '../../components/home/home-6/BlockGuide';
-import Blog4 from '../../components/blog/Blog4';
 import Copyright from '../../components/footer/footer-7/Copyright';
-import ParallaxBanner from '../../components/banner/ParallaxBanner';
-import FilterHotelsTabs2 from '../../components/hotels/filter-tabs/FilterHotelsTabs2';
-import FilterHotels2 from '../../components/hotels/FilterHotels2';
 import Travellers from '../../components/home/home-2/Travellers';
-import TourCategories from '../../components/home/home-6/TourCategories';
-import Faq from '../../components/faq/Faq';
-import FilterHotelsTabs3 from '../../components/hotels/filter-tabs/FilterHotelsTabs3';
 import FilterVisa from '../../components/hotels/FIlterVisa';
-import Counter4 from '../../components/counter/Counter4';
-import Image from 'next/image';
 import VisaTypes from '../../components/hotels/VisaTypes';
 import Countries from '../../components/home/home-6/Countries';
 
@@ -85,10 +63,13 @@ const home_3 = () => {
               </p>
 
               <div className='d-inline-block mt-40 lg:mt-20'>
-                <a href='#' className='button -md -blue-1 bg-dark-1 text-white'>
+                <Link
+                  href='/contact'
+                  className='button -md -blue-1 bg-dark-1 text-white'
+                >
                   Discover More{' '}
                   <div className='icon-arrow-top-right ml-15'></div>
-                </a>
+                </Link>
               </div>
             </div>
             {/* End .col */}
@@ -121,14 +102,14 @@ const home_3 = () => {
             {/* End .tabs__content */}
 
             <div className='row justify-center pt-30'>
-              <div className='col-auto'>
+              {/* <div className='col-auto'>
                 <Link
                   href='#'
                   className='button px-40 h-50 -outline-blue-1 text-blue-1'
                 >
                   View All <div className='icon-arrow-top-right ml-15' />
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -192,14 +173,14 @@ const home_3 = () => {
             {/* End .tabs__content */}
 
             <div className='row justify-center pt-30'>
-              <div className='col-auto'>
+              {/* <div className='col-auto'>
                 <Link
                   href='#'
                   className='button px-40 h-50 -outline-blue-1 text-blue-1'
                 >
                   View All <div className='icon-arrow-top-right ml-15' />
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

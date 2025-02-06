@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { hotelsData } from '../../data/hotels';
 
-const PackagePropertyCard = () => {
+const PackagePropertyCard = ({ searchResult }) => {
   return (
     <>
       {hotelsData.slice(0, 7).map((item) => (

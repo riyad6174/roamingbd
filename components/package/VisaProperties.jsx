@@ -10,7 +10,7 @@ const dummyData = {
   price: 25000,
 };
 
-const PackageBookingProperty = ({ tour }) => {
+const VisaProperties = ({ tour }) => {
   return (
     <div className='container my-5'>
       <div className='card'>
@@ -25,7 +25,7 @@ const PackageBookingProperty = ({ tour }) => {
                       width={300}
                       height={300}
                       className='rounded-4  col-12 js-lazy'
-                      src={tour?.image_path}
+                      src={tour?.type?.image_path}
                       alt='image'
                     />
                   </div>
@@ -55,9 +55,9 @@ const PackageBookingProperty = ({ tour }) => {
                 <div className='row '>
                   <div className=' d-flex align-items-start gap-2 justify-content-start'>
                     <div className='px-10 py-1 border fw-bold text-12 text-muted rounded'>
-                      {tour?.no_person} Person
+                      {tour?.country?.name}
                     </div>
-                    <div className='px-10 py-1 border fw-bold text-12 text-muted rounded'>
+                    {/* <div className='px-10 py-1 border fw-bold text-12 text-muted rounded'>
                       {tour?.tour_duration} Days
                     </div>
                     <div className='px-10 py-1 border fw-bold text-12 text-muted rounded'>
@@ -66,7 +66,7 @@ const PackageBookingProperty = ({ tour }) => {
                       ) : (
                         <span className='text-danger'>Fair Not Included</span>
                       )}
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <div className='text-14 lh-15 mt-10'>
@@ -75,7 +75,7 @@ const PackageBookingProperty = ({ tour }) => {
                   </div>
                   <div className='fw-500 text-18 py-10 '>
                     <span className='bg-light py-1 px-2 border text-blue-1'>
-                      BDT {tour?.price}/-
+                      BDT {tour?.processing_fee}/-
                     </span>
                   </div>
                 </div>
@@ -89,4 +89,4 @@ const PackageBookingProperty = ({ tour }) => {
   );
 };
 
-export default PackageBookingProperty;
+export default VisaProperties;

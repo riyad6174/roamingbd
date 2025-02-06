@@ -1,12 +1,9 @@
 import dynamic from 'next/dynamic';
-import CallToActions from '../../components/common/CallToActions';
-import Seo from '../../components/common/Seo';
-import DefaultHeader from '../../components/header/default-header';
-import DefaultFooter from '../../components/footer/default';
-import LoginWithSocial from '../../components/common/LoginWithSocial';
-import LoginForm from '../../components/common/LoginForm';
-import Header1 from '../../components/header/header-3';
-import Footer7 from '../../components/footer/footer-7';
+import Seo from '../components/common/Seo';
+import LoginWithSocial from '../components/common/LoginWithSocial';
+import LoginForm from '../components/common/LoginForm';
+import Header1 from '../components/header/header-3';
+import Footer7 from '../components/footer/footer-7';
 
 const LogIn = () => {
   return (

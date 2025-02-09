@@ -39,7 +39,7 @@ const TourSingleV1Dynamic = () => {
       const fetchVisaServices = async () => {
         try {
           const response = await axios.get(
-            `https://travel.pritom.me/api/v1/frontend/visa-service/data/list?country_id=${country}&type_id=${id}`
+            `https://travel.pritom.me/api/v1/frontend/visa-service/data/list?visa_country_id=${country}&visa_type_id=${id}`
           );
           if (response.data.success) {
             setVisaServices(response.data.data.data[0]);
@@ -73,7 +73,7 @@ const TourSingleV1Dynamic = () => {
       {/* header top margin */}
       <Header11 />
       {/* End Header 1 */}
-      <TopBreadCrumb />
+      <TopBreadCrumb title='Visa' subtitle={visaServices?.type?.name} />
       {/* End top breadcrumb */}
       <section className='pt-40'>
         <div className='container'>
@@ -119,17 +119,18 @@ const TourSingleV1Dynamic = () => {
               </button>
             </Link>
           </div>
+          <div className='row y-gap-30'>
+            <div className='col-xl-12'>
+              <PricingCard visaServices={visaServices} />
+            </div>
+          </div>
 
           <div className='row y-gap-30'>
             <div className='col-xl-12'>
               <Overview visaServices={visaServices} />
             </div>
           </div>
-          <div className='row y-gap-30'>
-            <div className='col-xl-12'>
-              <PricingCard visaServices={visaServices} />
-            </div>
-          </div>
+
           <div className='row y-gap-30 mx-2 my-4'>
             <div className='col-xl-12 bg-blue-1 text-white d-flex align-items-center gap-4'>
               <a href='#countryInfo'>Country Information</a>

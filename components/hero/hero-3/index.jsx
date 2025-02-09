@@ -18,7 +18,7 @@ const index = () => {
                 className='text-40 lg:text-40 md:text-30 text-white'
                 data-aos='fade-up'
               >
-                Your Trip Starts Here
+                Plan Your Perfect Trip
               </h1>
               <span
                 className='d-flex gap-4 align-items-center justify-content-center'

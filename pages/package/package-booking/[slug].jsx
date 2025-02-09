@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 
 import ModalVideo from 'react-modal-video';
 import 'photoswipe/dist/photoswipe.css';
-import toursData from '../../../data/tours';
 import Seo from '../../../components/common/Seo';
 import Header11 from '../../../components/header/header-3';
 import TopBreadCrumb from '../../../components/tour-single/TopBreadCrumb';

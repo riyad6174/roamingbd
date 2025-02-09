@@ -18,12 +18,12 @@ const TourSearch = () => {
   const [isFiltering, setIsFiltering] = useState(false);
 
   useEffect(() => {
-    if (!location) return; // Don't fetch if location is missing
+    if (!location || isFiltering) return; // Prevent fetch if filtering is active
 
     const fetchSearchData = async () => {
       try {
         const response = await axios.get(
-          `${baseUrl}/frontend/package/data/list/?location=${location}`
+          `${baseUrl}/frontend/package/data/list?location=${location}`
         );
         if (response.data.success) {
           setSearchResult(response.data.data.data);
@@ -35,16 +35,13 @@ const TourSearch = () => {
       }
     };
 
-    if (!isFiltering) {
-      fetchSearchData();
-    }
-  }, [location, isFiltering]); // Removed `isFiltering` dependency
+    fetchSearchData();
+  }, [location]); // Remove `isFiltering` from dependencies
 
   const fetchPackages = async (filters = {}) => {
-    setIsFiltering(true); // Mark filtering state
+    setIsFiltering(true); // Mark filtering as active
 
     try {
-      // Correctly serialize filter parameters
       const validFilters = Object.fromEntries(
         Object.entries(filters).filter(([_, value]) => value != null)
       );
@@ -59,12 +56,12 @@ const TourSearch = () => {
       if (response.data.success) {
         setSearchResult(response.data.data.data);
       } else {
-        setSearchResult([]); // Set empty array if no data
+        setSearchResult([]);
       }
     } catch (error) {
       console.error('Error fetching packages:', error);
     } finally {
-      setIsFiltering(false); // Reset filtering state
+      setTimeout(() => setIsFiltering(false), 300); // Delay resetting filtering state
     }
   };
 

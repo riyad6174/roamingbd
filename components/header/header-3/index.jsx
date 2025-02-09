@@ -60,7 +60,7 @@ const Header1 = () => {
 
                 <div className='d-flex items-center ml-8 is-menu-opened-hide md:d-none'>
                   <Link
-                    href='/others-pages/signup'
+                    href='/login'
                     className='button px-30 fw-400 text-12 -blue-1 bg-blue-3 h-40 text-white'
                   >
                     Find Bookings
@@ -68,7 +68,7 @@ const Header1 = () => {
                 </div>
                 <div className='d-flex items-center ml-8 is-menu-opened-hide md:d-none'>
                   <Link
-                    href='/others-pages/signup'
+                    href='/agent'
                     className='button px-30 fw-400 text-12 -blue-1 bg-blue-3 h-40 text-white'
                   >
                     Become An Agent
@@ -78,7 +78,7 @@ const Header1 = () => {
                 {/* Start btn-group */}
                 <div className='d-flex items-center ml-8 is-menu-opened-hide md:d-none'>
                   <Link
-                    href='/others-pages/signup'
+                    href='/login'
                     className='button px-30 fw-400 text-12 -blue-1 bg-blue-3 h-40 text-white'
                   >
                     Sign In / Register
@@ -90,7 +90,7 @@ const Header1 = () => {
                 <div className='d-none xl:d-flex x-gap-20 items-center pl-30 text-dark-1'>
                   <div>
                     <Link
-                      href='/others-pages/login'
+                      href='/login'
                       className='d-flex items-center icon-user text-inherit text-22'
                     />
                   </div>

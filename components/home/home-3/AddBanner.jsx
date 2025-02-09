@@ -59,7 +59,7 @@ const AddBanner = () => {
               />
             </div>
             <div className='ctaCard__content py-20 px-20 lg:py-30 lg:px-30'>
-              <h4 className='text-16 lg:text-16 text-white'>{item.title}</h4>
+              <h4 className='text-22  text-white'>{item.title}</h4>
               {item.subTitle ? (
                 <>
                   <div className='text-12 fw-500 text-white mb-10'>

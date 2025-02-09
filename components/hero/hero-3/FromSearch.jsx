@@ -10,21 +10,6 @@ const FromSearch = () => {
       name: 'Bangladesh',
       address: 'Greater London, United Kingdom',
     },
-    // {
-    //   id: 2,
-    //   name: 'India',
-    //   address: 'New York State, United States',
-    // },
-    // {
-    //   id: 3,
-    //   name: 'Nepal',
-    //   address: 'France',
-    // },
-    // {
-    //   id: 4,
-    //   name: 'Thailand',
-    //   address: 'Spain',
-    // },
   ];
 
   const handleOptionClick = (item) => {

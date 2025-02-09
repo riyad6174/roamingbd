@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import DatePicker, { DateObject } from 'react-multi-date-picker';
 
 const DateSearch = () => {
+  const today = new DateObject();
   // const [dates, setDates] = useState([
   //   new DateObject({ year: 2023, month: 1, day: 22 }),
   //   "December 09 2020",
@@ -24,6 +25,7 @@ const DateSearch = () => {
         range
         rangeHover
         format='MMMM DD'
+        minDate={today}
       />
     </div>
   );

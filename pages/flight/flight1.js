@@ -31,6 +31,7 @@ import FilterHotels2 from '../../components/hotels/FilterHotels2';
 import Travellers from '../../components/home/home-2/Travellers';
 import TourCategories from '../../components/home/home-6/TourCategories';
 import Faq from '../../components/faq/Faq';
+import Hero3 from '../../components/hero/hero-3';
 
 const home_3 = () => {
   return (
@@ -41,7 +42,7 @@ const home_3 = () => {
       <Header3 />
       {/* End Header 3 */}
 
-      <Hero11 />
+      <Hero3 />
       {/* End Hero 3 */}
 
       <div

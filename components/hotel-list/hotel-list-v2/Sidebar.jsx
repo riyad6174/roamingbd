@@ -62,13 +62,7 @@ const Sidebar = ({ onFilterChange }) => {
       if (selectedFilters.max_duration)
         queryParams.append('max_duration', selectedFilters.max_duration);
 
-      const response = await axios.get(
-        `${baseUrl}/frontend/package/data/list?${queryParams.toString()}`
-      );
-
-      if (response.data.success) {
-        onFilterChange(response.data.data.data);
-      }
+      onFilterChange(Object.fromEntries(queryParams)); // Pass filters, not data
     } catch (error) {
       console.error('Error applying filters:', error);
     }

@@ -5,11 +5,10 @@ const TourSearch = ({ onLocationSelect }) => {
   const [searchValue, setSearchValue] = useState('');
   const [selectedItem, setSelectedItem] = useState(null);
   const [locationSearchContent, setLocationSearchContent] = useState([]);
-  const [isLoading, setIsLoading] = useState(false); // Track loading state
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Function to fetch location data from the API
   const fetchLocations = async (searchText) => {
-    setIsLoading(true); // Set loading to true before making the request
+    setIsLoading(true);
     const response = await fetch(
       `${baseUrl}/frontend/package/data/list-of-location/${searchText}`
     );
@@ -17,17 +16,16 @@ const TourSearch = ({ onLocationSelect }) => {
     if (data.success) {
       setLocationSearchContent(data.data);
     } else {
-      setLocationSearchContent([]); // Handle empty data
+      setLocationSearchContent([]);
     }
-    setIsLoading(false); // Set loading to false after the request completes
+    setIsLoading(false);
   };
 
-  // Trigger the fetch request whenever the search value changes
   useEffect(() => {
     if (searchValue) {
       fetchLocations(searchValue);
     } else {
-      setLocationSearchContent([]); // Clear the results if search value is empty
+      setLocationSearchContent([]);
     }
   }, [searchValue]);
 
@@ -35,7 +33,7 @@ const TourSearch = ({ onLocationSelect }) => {
     setSearchValue(item);
     setSelectedItem(item);
     if (onLocationSelect) {
-      onLocationSelect(item); // Send selected location to the parent component
+      onLocationSelect(item);
     }
   };
 
@@ -67,7 +65,12 @@ const TourSearch = ({ onLocationSelect }) => {
                 <li className='text-center text-15 text-light-1 py-15'>
                   Searching...
                 </li>
-              ) : locationSearchContent.length === 0 && searchValue ? (
+              ) : searchValue === '' ? (
+                // Show prompt when input is empty
+                <li className='text-center text-15 text-light-1 py-15'>
+                  Start typing to search destinations
+                </li>
+              ) : locationSearchContent.length === 0 ? (
                 <li className='text-center text-15 text-light-1 py-15'>
                   No locations found
                 </li>

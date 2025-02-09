@@ -217,7 +217,7 @@ const home_3 = () => {
             </div>
             {/* End .tabs__content */}
 
-            <div className='row justify-center pt-30'>
+            {/* <div className='row justify-center pt-30'>
               <div className='col-auto'>
                 <Link
                   href='#'
@@ -226,7 +226,7 @@ const home_3 = () => {
                   View All <div className='icon-arrow-top-right ml-15' />
                 </Link>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
         {/* End .container */}

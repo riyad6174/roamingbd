@@ -59,15 +59,15 @@ const PopularDestinations = () => {
                   <div className='text-14 text-white'>{item.hoverText}</div>
                 </div>
                 <div className='citiesCard__bottom'>
-                  <h4 className='text-26 md:text-20 lh-13 text-white mb-10'>
+                  <h4 className='text-26 md:text-20 lh-13 text-white mb-30'>
                     {item.city}
                   </h4>
-                  <h5 className='text-12 md:text-12 lh-13 text-white mb-20'>
+                  <h5 className='text-12 md:text-12 lh-13 text-white mb-30'>
                     100+ Hotels Available
                   </h5>
-                  <button className='button col-12 h-60 -blue-1 bg-white text-dark-1'>
+                  {/* <button className='button col-12 h-60 -blue-1 bg-white text-dark-1'>
                     Discover
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </Link>

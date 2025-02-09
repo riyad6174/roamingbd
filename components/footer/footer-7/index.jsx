@@ -6,7 +6,7 @@ import Subscribe from './Subscribe';
 
 const index = () => {
   return (
-    <footer className=' footer -type-1 text-dark-1 bg-white footer-blue_custom'>
+    <footer className=' footer -type-1 text-dark-1 bg-light-4 footer-blue_custom'>
       <div className='container'>
         <div className='row y-gap-30 py-40'>
           <div

@@ -251,7 +251,8 @@ const home_3 = () => {
               <div className='shadow-4'>
                 <div className='row border-center '>
                   <img
-                    src='/img/gallery/1/background.png'
+                    // /img/gallery/1/2.png
+                    src='/img/gallery/1/Background.png'
                     className='rounded '
                   />
                 </div>

@@ -5,17 +5,18 @@ import DefaultFooter from '../../../components/footer/footer-7';
 import Sidebar from '../../../components/hotel-list/hotel-list-v2/Sidebar';
 import PackageCard from '../../../components/tour/PackageCard';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
 import axios from 'axios';
 import { baseUrl } from '../../../utils/network';
 import dynamic from 'next/dynamic';
-
-const TourSearch = () => {
+import TourSearch from '../../../components/hero/hero-3/TourSearch';
+const PackageSearch = () => {
   const router = useRouter();
   const { location } = router.query;
 
   const [searchResult, setSearchResult] = useState([]);
   const [isFiltering, setIsFiltering] = useState(false);
+  const [selectedLocation, setSelectedLocation] = useState(null);
 
   useEffect(() => {
     if (!location || isFiltering) return; // Prevent fetch if filtering is active
@@ -37,6 +38,12 @@ const TourSearch = () => {
 
     fetchSearchData();
   }, [location]); // Remove `isFiltering` from dependencies
+
+  const handleLocationSelect = (selectedLocation) => {
+    console.log('Selected location:', selectedLocation);
+    setSelectedLocation(selectedLocation);
+    // You can handle the selected location here
+  };
 
   const fetchPackages = async (filters = {}) => {
     setIsFiltering(true); // Mark filtering as active
@@ -65,6 +72,10 @@ const TourSearch = () => {
     }
   };
 
+  const handleSearch = () => {
+    Router.push(`/package/package-search?location=${selectedLocation}`);
+  };
+
   return (
     <>
       <Seo pageTitle='Tour Search' />
@@ -74,7 +85,23 @@ const TourSearch = () => {
 
       <section className='layout-pt-md layout-pb-lg'>
         <div className='container'>
-          <div className='row y-gap-30'>
+          <div className='mainSearch border bg-light pr-30 py-20 lg:px-20 lg:py-10 lg:pb-10 rounded-4'>
+            <div className='d-flex flex-row align-items-center w-100'>
+              <div className=' ' style={{ width: '1200px' }}>
+                <TourSearch onLocationSelect={handleLocationSelect} />
+              </div>
+              <div className='mt-3 w-25 d-flex justify-content-center'>
+                <button
+                  className='mainSearch__submit button -dark-1 py-15 px-35 h-60 rounded-4 bg-blue-1 text-white text-blue-1 w-100'
+                  onClick={handleSearch}
+                >
+                  <i className='icon-search text-20 mr-10' />
+                  Search
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className='row y-gap-30 mt-20'>
             <div className='col-xl-3'>
               <aside className='sidebar y-gap-40 xl:d-none'>
                 <Sidebar onFilterChange={fetchPackages} />
@@ -105,7 +132,6 @@ const TourSearch = () => {
 
             <div className='col-xl-9'>
               <div className='mt-30'></div>
-
               {searchResult.length > 0 ? (
                 <div className='row y-gap-30'>
                   <PackageCard packages={searchResult} />
@@ -126,4 +152,4 @@ const TourSearch = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(TourSearch), { ssr: false });
+export default dynamic(() => Promise.resolve(PackageSearch), { ssr: false });

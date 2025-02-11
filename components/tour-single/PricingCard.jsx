@@ -1,11 +1,24 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { openLogin } from '../../features/modal/modalSlice';
 // import { BiDownload, BiInfoCircle, BiMoney } from 'react-icons/bi';
 
 const VisaProcessingCard = ({ visaServices }) => {
   console.log(visaServices, 'visa');
-
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const handleNavigation = (url) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      localStorage.setItem('redirectTo', url);
+      dispatch(openLogin()); // Open login popup if no token
+    } else {
+      router.push(url); // Redirect if authenticated
+    }
+  };
   return (
     <div className=' mt-5'>
       <div className='row justify-content-end'>
@@ -41,12 +54,16 @@ const VisaProcessingCard = ({ visaServices }) => {
                 {/* <BiInfoCircle className='me-1' /> This fee is applicable for a */}
                 this fee is applicable for single person
               </small>
-              <Link href={`/visa/visa-booking/${visaServices?.slug}`}>
+              <div
+                onClick={() =>
+                  handleNavigation(`/visa/visa-booking/${visaServices.slug}`)
+                }
+              >
                 <button className='btn my-2 btn-primary rounded-3 px-3'>
                   {/* <BiDownload className='me-1' /> Proceed → */}
                   Proceed
                 </button>
-              </Link>
+              </div>
             </div>
           </div>
         </div>

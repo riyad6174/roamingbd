@@ -1,8 +1,22 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import { openLogin } from '../../features/modal/modalSlice';
 
 const PackageBookingCard = ({ tour }) => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const handleNavigation = (url) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      localStorage.setItem('redirectTo', url);
+      dispatch(openLogin()); // Open login popup if no token
+    } else {
+      router.push(url); // Redirect if authenticated
+    }
+  };
   return (
     <div className='container my-5'>
       <div className='card'>
@@ -71,14 +85,18 @@ const PackageBookingCard = ({ tour }) => {
                         BDT {tour?.price}/-
                       </span>
                     </div>
-                    <Link
-                      href={`/package/package-booking/${tour?.slug}`}
+                    <div
+                      onClick={() =>
+                        handleNavigation(
+                          `/package/package-booking/${tour?.slug}`
+                        )
+                      }
                       className='fw-500 text-18 py-10 '
                     >
                       <span className='btn btn-primary text-white rounded-0 border py-1 px-2 border text-blue-1'>
                         Procceed Payment
                       </span>
-                    </Link>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -5521,6 +5521,11 @@ react-element-popper@^2.1.6:
   resolved "https://registry.npmjs.org/react-element-popper/-/react-element-popper-2.1.6.tgz"
   integrity sha512-8va7mUmrKIkUnaM2t5Dyctd8cjgVgVcrv5vVD0FRay0sN6EPBCKa0bDi1/KmVDAjfgSIn7zQnjtc4VojcGrkgQ==
 
+react-icons@^5.4.0:
+  version "5.4.0"
+  resolved "https://registry.npmjs.org/react-icons/-/react-icons-5.4.0.tgz"
+  integrity sha512-7eltJxgVt7X64oHh6wSWNwwbKTCtMfK35hcjvJS0yxEAhPM8oUKdS3+kqaW1vicIltw+kR2unHaa12S9pPALoQ==
+
 react-input-range@^1.3.0:
   version "1.3.0"
   resolved "https://registry.npmjs.org/react-input-range/-/react-input-range-1.3.0.tgz"

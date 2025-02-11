@@ -1,4 +1,7 @@
 import Link from 'next/link';
+import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
+import { openLogin } from '../../features/modal/modalSlice';
 
 // Function to strip HTML tags and return plain text
 const stripHtml = (html) => {
@@ -15,6 +18,19 @@ const truncateText = (text, maxLength = 100) => {
 };
 
 const PackageCard = ({ packages }) => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const handleNavigation = (url) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      localStorage.setItem('redirectTo', url);
+      dispatch(openLogin()); // Open login popup if no token
+    } else {
+      router.push(url); // Redirect if authenticated
+    }
+  };
+
   return (
     <>
       {packages.map((item, index) => {
@@ -59,11 +75,13 @@ const PackageCard = ({ packages }) => {
               {/* Content Section */}
               <div className='col-md-8'>
                 <div className='p-4'>
+                  {/* Title - Redirect if logged in, else show login */}
                   <Link
                     href={`/package/tour-package-single/${item.slug}`}
-                    className='d-flex justify-content-between align-items-center'
+                    className='fw-bold fs-4 mb-0 text-primary cursor-pointer'
+                    style={{ cursor: 'pointer' }}
                   >
-                    <h4 className='fw-bold mb-0'>{item.name}</h4>
+                    {item.name}
                   </Link>
                   <p className='text-muted mt-2'>
                     <i className='bi bi-geo-alt'></i> {item.location}
@@ -86,10 +104,10 @@ const PackageCard = ({ packages }) => {
                     </div>
                   </div>
                   <div className='d-flex gap-3 justify-content-between align-items-center mt-4'>
-                    <div className=''>
-                      <h6 className='fw-bold mt-4 '>Description:</h6>
+                    <div>
+                      <h6 className='fw-bold mt-4'>Description:</h6>
                       <p
-                        className='small  text-muted py-4 description-truncate'
+                        className='small text-muted py-4 description-truncate'
                         dangerouslySetInnerHTML={{
                           __html: plainTextDescription,
                         }}
@@ -102,11 +120,17 @@ const PackageCard = ({ packages }) => {
                         </p>
                         <h4 className='fw-bold'>BDT {item.price}/-</h4>
                       </div>
-                      <Link href={`/package/package-booking/${item.slug}`}>
-                        <button className='btn btn-primary btn-sm rounded-0 px-10 py-2'>
-                          Select Offer
-                        </button>
-                      </Link>
+                      {/* Booking Button - Requires Login */}
+                      <button
+                        className='btn btn-primary btn-sm rounded-0 px-10 py-2'
+                        onClick={() =>
+                          handleNavigation(
+                            `/package/package-booking/${item.slug}`
+                          )
+                        }
+                      >
+                        Select Offer
+                      </button>
                     </div>
                   </div>
                 </div>

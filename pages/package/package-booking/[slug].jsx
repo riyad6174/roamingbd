@@ -16,20 +16,14 @@ import PaymentForm from '../../../components/package/PaymentForm';
 import ReturnPolicyCard from '../../../components/package/ReturnPolicyCard';
 import { baseUrl } from '../../../utils/network';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { openLogin } from '../../../features/modal/modalSlice';
 
 const TourSingleV1Dynamic = () => {
   const [isOpen, setOpen] = useState(false);
   const router = useRouter();
   const [tour, setTour] = useState({});
   const { slug } = router.query;
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      localStorage.setItem('redirectTo', `/package/package-booking/${slug}`);
-      router.push('/login');
-    }
-  }, [slug]);
 
   useEffect(() => {
     if (!slug) return;

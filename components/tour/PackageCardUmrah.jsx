@@ -1,6 +1,20 @@
 import Link from 'next/link';
+import { useDispatch } from 'react-redux';
+import { openLogin } from '../../features/modal/modalSlice';
+import { useRouter } from 'next/router';
 
 const PackageCard = ({ packages }) => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const handleNavigation = (url) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      localStorage.setItem('redirectTo', url);
+      dispatch(openLogin()); // Open login popup if no token
+    } else {
+      router.push(url); // Redirect if authenticated
+    }
+  };
   return (
     <div className='row p-4'>
       {packages.map((item, index) => (
@@ -9,8 +23,10 @@ const PackageCard = ({ packages }) => {
           className='col-md-6 p-2 card package-card rounded-4 border-0 '
         >
           {/* Image Section */}
-          <Link
-            href={`/package/tour-package-single/${item.slug}`}
+          <div
+            onClick={() =>
+              handleNavigation(`/package/tour-package-single/${item.slug}`)
+            }
             className='position-relative  rounded-4'
           >
             <img
@@ -31,7 +47,7 @@ const PackageCard = ({ packages }) => {
                 </p>
               </div>
             </div>
-          </Link>
+          </div>
         </div>
       ))}
     </div>

@@ -6,10 +6,13 @@ import LanguageMegaMenu from '../LanguageMegaMenu';
 import HeaderSearch from '../HeaderSearch';
 import MobileMenu from '../MobileMenu';
 import Menu from '../Menu';
+import { useDispatch } from 'react-redux';
+import { openLogin, openRegister } from '../../../features/modal/modalSlice';
 
 const Header1 = () => {
   const [navbar, setNavbar] = useState(false);
-
+  const [user, setUser] = useState(null);
+  const dispatch = useDispatch();
   const changeBackground = () => {
     if (window.scrollY >= 10) {
       setNavbar(true);
@@ -20,6 +23,18 @@ const Header1 = () => {
 
   useEffect(() => {
     window.addEventListener('scroll', changeBackground);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      setNavbar(window.scrollY >= 10);
+    });
+
+    const token = localStorage.getItem('token');
+    const userInfo = localStorage.getItem('user');
+    if (token && userInfo) {
+      setUser(JSON.parse(userInfo));
+    }
   }, []);
 
   return (
@@ -59,12 +74,12 @@ const Header1 = () => {
                 {/* End language and currency selector */}
 
                 <div className='d-flex items-center ml-8 is-menu-opened-hide md:d-none'>
-                  <Link
-                    href='/login'
+                  <button
+                    onClick={() => dispatch(openRegister())}
                     className='button px-30 fw-400 text-12 -blue-1 bg-blue-3 h-40 text-white'
                   >
                     Find Bookings
-                  </Link>
+                  </button>
                 </div>
                 <div className='d-flex items-center ml-8 is-menu-opened-hide md:d-none'>
                   <Link
@@ -75,14 +90,33 @@ const Header1 = () => {
                   </Link>
                 </div>
 
-                {/* Start btn-group */}
                 <div className='d-flex items-center ml-8 is-menu-opened-hide md:d-none'>
-                  <Link
-                    href='/login'
+                  <button
+                    onClick={() => dispatch(openLogin())}
                     className='button px-30 fw-400 text-12 -blue-1 bg-blue-3 h-40 text-white'
                   >
-                    Sign In / Register
-                  </Link>
+                    {user ? (
+                      <div className='d-flex align-items-center gap-2'>
+                        <svg
+                          xmlns='http://www.w3.org/2000/svg'
+                          width='16'
+                          height='16'
+                          fill='currentColor'
+                          class='bi bi-person-circle'
+                          viewBox='0 0 16 16'
+                        >
+                          <path d='M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0' />
+                          <path
+                            fill-rule='evenodd'
+                            d='M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1'
+                          />
+                        </svg>
+                        <span>{user.name}</span>
+                      </div>
+                    ) : (
+                      'Sign In / Register'
+                    )}
+                  </button>
                 </div>
                 {/* End btn-group */}
 

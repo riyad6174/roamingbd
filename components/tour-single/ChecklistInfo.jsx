@@ -1,4 +1,5 @@
 import React from 'react';
+import { GiCheckMark } from 'react-icons/gi';
 
 const checklistData = [
   {
@@ -82,17 +83,8 @@ function ChecklistInfo({ data }) {
         Checklist for required documents for Tourist Visa ({data?.country?.name}
         )
       </h3>
-      <div className='card mb-20 px-5 d-flex flex-row align-items-center gap-3'>
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          width='16'
-          height='16'
-          fill='currentColor'
-          class='bi bi-check2'
-          viewBox='0 0 16 16'
-        >
-          <path d='M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0' />
-        </svg>
+      <div className='card mb-20 px-20 d-flex flex-row align-items-center gap-3'>
+        <GiCheckMark style={{ fontSize: '14px' }} />
         <p className='py-2'>
           Required Documents for Electronic Visa ( {data?.country?.name}
           ))
@@ -103,7 +95,19 @@ function ChecklistInfo({ data }) {
           <div className='col  ' key={index}>
             <div className='p-3 shadow-lg  border border-secondary h-100'>
               <div>
-                <h5 className='fw-bold text-primary'>{item.title}</h5>
+                <div className='d-flex '>
+                  <h5
+                    className='px-2 py-1'
+                    style={{
+                      color: '#05939F',
+                      backgroundColor: 'rgb(238, 251, 252) ',
+                      border: '1px solid #05939F ,',
+                      borderRadius: '5px',
+                    }}
+                  >
+                    {item.title}
+                  </h5>
+                </div>
                 <ul className='list-disc mt-3'>
                   {item.requirements.map((requirement, idx) => (
                     <li

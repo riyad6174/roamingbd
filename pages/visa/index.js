@@ -195,7 +195,7 @@ const home_3 = () => {
             <div className='col-auto'>
               <div className='sectionTitle -md'>
                 <h2 className='sectionTitle__title'>
-                  Popular Cities Worldwide
+                  Popular Countries Worldwide
                 </h2>
                 <p className=' sectionTitle__text mt-5 sm:mt-0'>
                   Expand your travel horizons with new facets! Diversify your{' '}
@@ -292,7 +292,6 @@ const home_3 = () => {
                         </p>
                       </div>
                     </div>
-                    <div className='card-number'>01</div>
                   </div>
                 </div>
 
@@ -317,7 +316,6 @@ const home_3 = () => {
                         </p>
                       </div>
                     </div>
-                    <div className='card-number'>02</div>
                   </div>
                 </div>
 
@@ -342,7 +340,6 @@ const home_3 = () => {
                         </p>
                       </div>
                     </div>
-                    <div className='card-number'>03</div>
                   </div>
                 </div>
 
@@ -366,7 +363,6 @@ const home_3 = () => {
                         </p>
                       </div>
                     </div>
-                    <div className='card-number'>04</div>
                   </div>
                 </div>
               </div>

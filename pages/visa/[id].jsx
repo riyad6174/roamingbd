@@ -155,7 +155,7 @@ const TourSingleV1Dynamic = () => {
             </div>
           </div>
           {/* Checklist info */}
-          <div className='row y-gap-30' id='#checklist'>
+          <div className='row y-gap-30' id='checklist'>
             <div className='col-xl-12'>
               <ChecklistInfo data={visaServices} />
             </div>

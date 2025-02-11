@@ -37,7 +37,7 @@ const Countries = () => {
                   alt={item.name || 'Country Image'}
                   width={50}
                   height={50}
-                  className='rounded-circle'
+                  className='rounded'
                 />
               </div>
               <h4 className='text-18 fw-500'>{item.name}</h4>

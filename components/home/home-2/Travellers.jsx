@@ -13,9 +13,9 @@ const Travellers = () => {
           nextEl: '.js-destination-next',
           prevEl: '.js-destination-prev',
         }}
-        pagination={{
-          clickable: true,
-        }}
+        // pagination={{
+        //   clickable: true,
+        // }}
         breakpoints={{
           540: {
             slidesPerView: 2,

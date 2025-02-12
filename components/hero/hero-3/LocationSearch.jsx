@@ -39,18 +39,21 @@ const LocationSearch = () => {
 
   return (
     <>
-      <div className='searchMenu-loc px-30 lg:py-20 lg:px-0 js-form-dd js-liverSearch'>
+      <div
+        style={{ border: '1px solid rgb(165, 164, 164)', padding: '6px 0' }}
+        className='searchMenu-loc  px-30 lg:py-20  rounded lg:px-0 js-form-dd js-liverSearch'
+      >
         <div
           data-bs-toggle='dropdown'
           data-bs-auto-close='true'
           data-bs-offset='0,22'
         >
-          <h4 className='text-15 fw-500 ls-2 lh-16'>Location</h4>
+          <h4 className='text-15 fw-300 ls-2 lh-16'>Destination</h4>
           <div className='text-15 text-light-1 ls-2 lh-16'>
             <input
               autoComplete='off'
               type='search'
-              placeholder='Where are you going?'
+              placeholder='City, airport, region, landmark or property name'
               className='js-search js-dd-focus'
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
@@ -73,10 +76,10 @@ const LocationSearch = () => {
                   <div className='d-flex'>
                     <div className='icon-location-2 text-light-1 text-20 pt-4' />
                     <div className='ml-10'>
-                      <div className='text-15 lh-12 fw-500 js-search-option-target'>
+                      <div className='text-15 lh-12 fw-300 js-search-option-target'>
                         {item.name}
                       </div>
-                      <div className='text-14 lh-12 text-light-1 mt-5'>
+                      <div className='text-14  fw-500  lh-12 text-light-1 mt-5'>
                         {item.address}
                       </div>
                     </div>

@@ -12,6 +12,7 @@ import TourSearch from './TourSearch';
 import Link from 'next/link';
 import FlyingFromLocation from '../hero-10/FlyingFromLocation';
 import FlyingToLocation from '../hero-10/FlyingToLocation';
+import { BiChevronDown } from 'react-icons/bi';
 
 const MainFilterSearchBox = () => {
   const router = useRouter();
@@ -119,34 +120,51 @@ const MainFilterSearchBox = () => {
             </div>
           </div>
         ) : currentTab === 'Flights' ? (
-          <div className=' bg-glass mainSearch -col-4 -w-1070 bg-white shadow-1 rounded-4 pr-20 py-10 lg:px-20 lg:pt-3 lg:pb-10 mt-6'>
+          <div className=' bg-white mainSearch -col-4 -w-1100 bg-white shadow-1 rounded-4  py-10 lg:px-20 lg:pt-3 lg:pb-10 mt-6'>
             <div className='tabs -pills-2 pb-10'>
               <div className='tabs__controls row x-gap-15 justify-start px-20 js-tabs-controls'>
-                {filterOptions.map((option) => (
-                  <div className='col-auto' key={option.value}>
-                    <button
-                      className={`tabs__button text-14 fw-500 px-20 py-5 rounded-4 bg-light-2 js-tabs-button mb-10 ${
-                        filterOption === option.value ? 'is-tab-el-active' : ''
-                      }`}
-                      onClick={() => setFilterOption(option.value)}
-                    >
-                      {option.label}
-                    </button>
-                  </div>
-                ))}
+                <div className='col-auto'>
+                  <button className='tabs__button text-14 fw-500 px-20 py-5 border-0 rounded-4 bg-blue-5 text-white js-tabs-button mb-10 d-flex align-items-center'>
+                    <input
+                      type='radio'
+                      name='filterOption'
+                      checked
+                      className='mr-2'
+                    />
+                    <span className='px-2'>One Way</span>
+                  </button>
+                </div>
+                <div className='col-auto'>
+                  <button className='tabs__button text-14 fw-500 px-20 py-5 border-0 rounded-4 bg-light-2 js-tabs-button mb-10 d-flex align-items-center'>
+                    <input type='radio' name='filterOption' className='mr-2' />
+                    <span className='px-2'>Round Trip</span>
+                  </button>
+                </div>
+                <div className='col-auto'>
+                  <button className='tabs__button text-14 fw-500 px-20 py-5 border-0 rounded-4 bg-light-2 js-tabs-button mb-10 d-flex align-items-center'>
+                    <input type='radio' name='filterOption' className='mr-2' />
+                    <span className='px-2'>Multicity</span>
+                  </button>
+                </div>
               </div>
             </div>
-            <div className='button-grid items-center'>
+            <div className='button-grid items-center px-20 py-10'>
               <FlyingFromLocation />
               {/* End Location Flying From */}
 
               <FlyingToLocation />
               {/* End Location Flying To */}
 
-              <div className='searchMenu-date px-30 lg:py-20 lg:px-0 js-form-dd js-calendar'>
+              <div
+                style={{ padding: '5px 0' }}
+                className='searchMenu-date px-30 lg:py-20 lg:px-0 js-form-dd js-calendar'
+              >
                 <div>
-                  <h4 className='text-15 fw-500 ls-2 lh-16'>Depart</h4>
-                  <DateSearch />
+                  <h4 className='text-15 fw-300 text-muted ls-2 lh-16'>
+                    Depart
+                  </h4>
+                  {/* <DateSearch /> */}
+                  <p className='fw-600 text-15 text-dark'>Sun, Dec 16</p>
                 </div>
               </div>
               {/* End Depart */}
@@ -158,14 +176,41 @@ const MainFilterSearchBox = () => {
             </div>
           </div> */}
               {/* End Return */}
+              {/* 
+              <GuestSearch /> */}
+              <div
+                style={{ padding: '8px 0' }}
+                className='searchMenu-date js-form-dd gap-2 js-calendar d-flex align-items-center justify-content-between px-2 '
+              >
+                <div className='d-flex flex-column align-items-start'>
+                  <span className='text-14 fw-300 ls-2 lh-16 text-muted'>
+                    Number of Passengers
+                  </span>
+                  <span className='text-15 fw-500 ls-2 lh-16'>
+                    1 Adult, Economy
+                  </span>
+                </div>
 
-              <GuestSearch />
+                <BiChevronDown style={{ fontSize: '30px', color: 'gray' }} />
+              </div>
               {/* End guest */}
 
               <div className='button-item'>
-                <button
+                {/* <button
                   className='mainSearch__submit button -blue-1 py-15 px-35 h-60 col-12 rounded-4 bg-dark-1 text-white'
                   onClick={() => Router.push('#')}
+                >
+                  <i className='icon-search text-20 mr-10' />
+                  Search
+                </button> */}
+                <button
+                  className=' d-flex items-center   px-35  col-12 rounded-4'
+                  onClick={handleSearch}
+                  style={{
+                    border: '2px solid #006CE4',
+                    color: '#006CE4',
+                    padding: '16px 0',
+                  }}
                 >
                   <i className='icon-search text-20 mr-10' />
                   Search
@@ -175,26 +220,92 @@ const MainFilterSearchBox = () => {
             </div>
           </div>
         ) : (
-          <div className='mainSearch bg-glass pr-20 py-20 lg:px-20 lg:pt-5 lg:pb-20 rounded-4'>
+          <div className='mainSearch px-50 bg-white pr-20 py-30 lg:px-20 lg:pt-5 lg:pb-20 rounded-4'>
             <div className='button-grid items-center'>
-              <LocationSearch />
-              <div className='searchMenu-date px-30 lg:py-20 lg:px-0 js-form-dd js-calendar'>
-                <div>
-                  <h4 className='text-15 fw-500 ls-2 lh-16'>
-                    Check in - Check out
-                  </h4>
-                  <DateSearch />
+              {/* <LocationSearch /> */}
+
+              <div
+                style={{
+                  padding: '10px 8px',
+                  border: '1px solid gray',
+                  borderRadius: '5px',
+                }}
+                className='searchMenu-date js-form-dd js-calendar d-flex gap-3 align-items-center justify-content-between px-2 '
+              >
+                <div className='d-flex flex-column align-items-start'>
+                  <span className='text-14 fw-300 ls-2 text-muted lh-16'>
+                    Destination
+                  </span>
+                  <span className='text-14 fw-600 ls-2 lh-16 text-muted'>
+                    City, airport, region, landmark or property name
+                  </span>
                 </div>
               </div>
-              <GuestSearch />
+
+              {/* <div className='searchMenu-date  px-30 lg:py-20 lg:px-0 js-form-dd js-calendar'>
+                <div>
+                  <DateSearch />
+                </div>
+              </div> */}
+              <div
+                style={{ padding: '10px 10px' }}
+                className='searchMenu-date js-form-dd js-calendar d-flex gap-3 align-items-center justify-content-between px-2 '
+              >
+                <div className='d-flex flex-column align-items-start'>
+                  <span className='text-13 fw-500 ls-2 text-muted lh-16'>
+                    Check-in
+                  </span>
+                  <span className='text-14 fw-600 ls-2 lh-16'>Sun, Dec 15</span>
+                </div>
+                <div>
+                  <span className='text-13 fw-500 ls-2 lh-16 text-muted'>
+                    1 Night
+                  </span>
+                </div>
+                <div className='d-flex flex-column align-items-end'>
+                  <span className='text-13 fw-500 ls-2 lh-16 text-muted'>
+                    Check-out
+                  </span>
+                  <span className='text-14 fw-600 ls-2 lh-16'>Sun, Dec 15</span>
+                </div>
+              </div>
+
+              {/* <GuestSearch /> */}
+              <div
+                style={{ padding: '8px 0' }}
+                className='searchMenu-date js-form-dd js-calendar d-flex align-items-center justify-content-between px-2 '
+              >
+                <div className='d-flex flex-column align-items-start'>
+                  <span className='text-14 fw-300 ls-2 lh-16 text-muted'>
+                    Rooms and Guests
+                  </span>
+                  <span className='text-15 fw-500 ls-2 lh-16'>
+                    1 Room, 2 Adults, 0 Children
+                  </span>
+                </div>
+
+                <BiChevronDown style={{ fontSize: '30px', color: 'gray' }} />
+              </div>
               <div className='button-item'>
                 <button
+                  className=' d-flex items-center   px-35  col-12 rounded-4'
+                  onClick={handleSearch}
+                  style={{
+                    border: '2px solid #006CE4',
+                    color: '#006CE4',
+                    padding: '16px 0',
+                  }}
+                >
+                  <i className='icon-search text-20 mr-10' />
+                  Search
+                </button>
+                {/* <button
                   className='mainSearch__submit button -dark-1 py-15 px-35 h-60 col-12 rounded-4 bg-glass text-blue-1'
                   onClick={handleSearch}
                 >
                   <i className='icon-search text-20 mr-10' />
                   Search
-                </button>
+                </button> */}
               </div>
             </div>
           </div>

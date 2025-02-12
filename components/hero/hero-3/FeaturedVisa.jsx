@@ -26,11 +26,14 @@ function FeaturedVisa() {
               Student Visa
             </button>
           </div>
-          <p className='text-dark text-30 pt-30'>
+          <p
+            className='text-dark text-50 pt-30 '
+            style={{ lineHeight: '48px', fontWeight: '400' }}
+          >
             Roaming BD can be your <br /> reliable visa processing <br /> agent
             in Bangladesh.
           </p>
-          <p className='py-20'>
+          <p className='py-20 '>
             Roaming BD is the best visa processing agency in Bangladesh <br />{' '}
             for multiple purposes like touring and traveling, business, <br />
             treatment, etc.

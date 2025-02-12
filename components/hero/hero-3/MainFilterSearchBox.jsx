@@ -83,7 +83,7 @@ const MainFilterSearchBox = () => {
 
       <div className='tabs__content js-tabs-content py-2'>
         {currentTab === 'Visa' ? (
-          <div className='mainSearch bg-glass pr-20 py-20 lg:px-20 lg:pt-5 lg:pb-20 rounded-4'>
+          <div className='mainSearch bg-white pr-20 py-40 px-50 lg:px-20 lg:pt-5 lg:pb-20 rounded-4'>
             <div className='button-grid items-center'>
               <FromSearch />
               <ToSearch onCountrySelect={setSelectedCountryId} />
@@ -91,7 +91,7 @@ const MainFilterSearchBox = () => {
                 selectedCountryId={selectedCountryId}
                 onVisaTypeSelect={setSelectedVisaTypeId}
               />
-              <div className='button-item'>
+              {/* <div className='button-item'>
                 <button
                   className='mainSearch__submit button -dark-1 py-15 px-35 h-60 col-12 rounded-4 bg-glass text-blue-1'
                   onClick={handleSearch}
@@ -99,16 +99,37 @@ const MainFilterSearchBox = () => {
                   <i className='icon-search text-20 mr-10' />
                   Search
                 </button>
+              </div> */}
+              <div className='button-item'>
+                <button
+                  className=' d-flex items-center   px-35  col-12 rounded-4'
+                  onClick={handleSearch}
+                  style={{
+                    border: '2px solid #006CE4',
+                    color: '#006CE4',
+                    padding: '12px 0',
+                  }}
+                >
+                  <i className='icon-search text-20 mr-10' />
+                  Search
+                </button>
+                {/* <button
+                  className='mainSearch__submit button -dark-1 py-15 px-35 h-60 col-12 rounded-4 bg-glass text-blue-1'
+                  onClick={handleSearch}
+                >
+                  <i className='icon-search text-20 mr-10' />
+                  Search
+                </button> */}
               </div>
             </div>
           </div>
         ) : currentTab === 'Tour' ? (
-          <div className='mainSearch bg-glass pr-20 py-20 lg:px-20 lg:py-10 lg:pb-20 rounded-4'>
+          <div className='mainSearch bg-white px-70 pr-20 py-20 lg:px-20 lg:py-10 lg:pb-20 rounded-4'>
             <div className='d-flex flex-row align-items-center w-100'>
               <div className=' ' style={{ width: '700px' }}>
                 <TourSearch onLocationSelect={handleLocationSelect} />
               </div>
-              <div className='mt-3 w-25 d-flex justify-content-center'>
+              {/* <div className='mt-3 w-25 d-flex justify-content-center'>
                 <button
                   className='mainSearch__submit button -dark-1 py-15 px-35 h-60 rounded-4 bg-glass text-blue-1 w-100'
                   onClick={handleSearch}
@@ -116,6 +137,27 @@ const MainFilterSearchBox = () => {
                   <i className='icon-search text-20 mr-10' />
                   Search
                 </button>
+              </div> */}
+              <div className='button-item'>
+                <button
+                  className=' d-flex items-center   px-35  col-12 rounded-4'
+                  onClick={handleSearch}
+                  style={{
+                    border: '2px solid #001a69',
+                    color: 'white',
+                    padding: '16px 0',
+                    backgroundColor: '#001a69',
+                  }}
+                >
+                  <i className='icon-search text-20 mr-10' />
+                </button>
+                {/* <button
+                  className='mainSearch__submit button -dark-1 py-15 px-35 h-60 col-12 rounded-4 bg-glass text-blue-1'
+                  onClick={handleSearch}
+                >
+                  <i className='icon-search text-20 mr-10' />
+                  Search
+                </button> */}
               </div>
             </div>
           </div>

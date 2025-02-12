@@ -19,7 +19,10 @@ const FromSearch = () => {
 
   return (
     <>
-      <div className='searchMenu-loc px-30 lg:py-20 lg:px-0 js-form-dd js-liverSearch'>
+      <div
+        className='searchMenu-loc  py-1 rounded px-30 lg:py-20 lg:px-0 js-form-dd js-liverSearch'
+        style={{ border: '1px solid rgb(190, 188, 187)' }}
+      >
         <div
           data-bs-toggle='dropdown'
           data-bs-auto-close='true'

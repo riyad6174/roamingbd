@@ -44,11 +44,12 @@ const TourSearch = ({ initialLocation, onLocationSelect }) => {
   };
 
   return (
-    <div className='searchMenu-loc px-30 lg:py-20 lg:px-0 js-form-dd js-liverSearch'>
+    <div className='searchMenu-loc  px-30 lg:py-20 lg:px-0 js-form-dd js-liverSearch'>
       <div
         data-bs-toggle='dropdown'
         data-bs-auto-close='true'
         data-bs-offset='0,22'
+        className='border px-2 py-2'
       >
         <h4 className='text-15 fw-500 ls-2 lh-16'>Destinations</h4>
         <div className='text-15 text-light-1 ls-2 lh-16'>

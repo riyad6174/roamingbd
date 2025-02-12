@@ -133,7 +133,7 @@ function LoginModal() {
         )}
 
         <div className='d-flex align-items-center justify-content-center gap-3 pt-50'>
-          <span className='text-muted'>Don&apos; Have an account?</span>
+          <span className='text-muted'>Don&apos;t Have an account?</span>
           <span
             style={{ cursor: 'pointer' }}
             onClick={() => dispatch(openRegister())}

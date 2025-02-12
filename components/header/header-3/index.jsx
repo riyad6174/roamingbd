@@ -46,7 +46,6 @@ const Header1 = () => {
               <div className='d-flex items-center'>
                 <Link href='/' className='header-logo mr-20'>
                   <img src='/img/general/logo.png' alt='logo icon' />
-                  <img src='/img/general/logo.png' alt='logo icon' />
                 </Link>
                 {/* End logo */}
                 <div className='d-flex px-10 items-center ml-24 is-menu-opened-hide md:d-none'>
@@ -124,13 +123,13 @@ const Header1 = () => {
                 <div className='d-none xl:d-flex x-gap-20 items-center pl-30 text-dark-1'>
                   <div>
                     <Link
-                      href='/login'
-                      className='d-flex items-center icon-user text-inherit text-22'
+                      href='/'
+                      className='d-flex items-center icon-user text-white text-22'
                     />
                   </div>
                   <div>
                     <button
-                      className='d-flex items-center icon-menu text-inherit text-20'
+                      className='d-flex items-center icon-menu text-white text-20'
                       data-bs-toggle='offcanvas'
                       aria-controls='mobile-sidebar_menu'
                       data-bs-target='#mobile-sidebar_menu'

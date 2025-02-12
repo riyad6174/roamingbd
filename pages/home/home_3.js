@@ -15,6 +15,9 @@ import PopularRoutes from '../../components/home/home-10/PopularRoutes';
 import BlockGuide from '../../components/home/home-6/BlockGuide';
 import Blog4 from '../../components/blog/Blog4';
 import Copyright from '../../components/footer/footer-7/Copyright';
+import FeaturedVisa from '../../components/hero/hero-3/FeaturedVisa';
+import UmrahPackage from '../../components/hero/hero-3/UmrahSection';
+import Link from 'next/link';
 
 const home_3 = () => {
   return (
@@ -206,6 +209,15 @@ const home_3 = () => {
         </div>
         {/* End .container */}
       </section>
+      <section
+        className='layout-pt-lg mt-30 layout-pb-lg'
+        style={{ backgroundColor: '#FDF7F4' }}
+      >
+        <div className='relative mt-40 sm:mt-20'>
+          <FeaturedVisa />
+        </div>
+        {/* End .container */}
+      </section>
 
       {/* <section className='layout-pt-md layout-pb-md'>
         <div className='container'>
@@ -237,27 +249,29 @@ const home_3 = () => {
                 <h2 className='sectionTitle__title'>
                   Umrah Packages From Bangladesh
                 </h2>
-                <p className=' sectionTitle__text mt-5 sm:mt-0'>
-                  Here are some of the Top and Cheap Packages for you during the
-                  Hajj
-                </p>
+                <div className='d-flex align-items-center justify-content-between'>
+                  <p className=' sectionTitle__text mt-5 sm:mt-0'>
+                    Here are some of the Top and Cheap Packages for you during
+                    the Hajj
+                  </p>
+                </div>
               </div>
             </div>
             {/* End .col */}
 
-            {/* <div className='col-auto'>
+            <div className='col-auto'>
               <Link
-                href='#'
+                href='/tour-package'
                 className='button -md -blue-1 bg-blue-1-05 text-blue-1'
               >
-                More <div className='icon-arrow-top-right ml-15' />
+                See All <div className='icon-arrow-top-right ml-15' />
               </Link>
-            </div> */}
+            </div>
           </div>
           {/* End .row */}
 
           <div className='row y-gap-30 pt-40'>
-            <Blog4 />
+            <UmrahPackage />
           </div>
           {/* End relative */}
         </div>

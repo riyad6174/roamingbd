@@ -88,7 +88,10 @@ const PackageSearch = () => {
           <div className='mainSearch border bg-light pr-30 py-20 lg:px-20 lg:py-10 lg:pb-10 rounded-4'>
             <div className='d-flex flex-row align-items-center w-100'>
               <div className=' ' style={{ width: '1200px' }}>
-                <TourSearch onLocationSelect={handleLocationSelect} />
+                <TourSearch
+                  initialLocation={location}
+                  onLocationSelect={handleLocationSelect}
+                />
               </div>
               <div className='mt-3 w-25 d-flex justify-content-center'>
                 <button

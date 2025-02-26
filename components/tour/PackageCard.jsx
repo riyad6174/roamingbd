@@ -103,7 +103,7 @@ const PackageCard = ({ packages }) => {
                       </div>
                     </div>
                   </div>
-                  <div className='d-flex gap-3 justify-content-between align-items-center mt-4'>
+                  <div className='d-flex flex-column flex-md-row  gap-md-3 justify-content-between align-items-md-center mt-4'>
                     <div>
                       <h6 className='fw-bold mt-4'>Description:</h6>
                       <p

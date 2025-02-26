@@ -16,7 +16,7 @@ const PackageCard = ({ packages }) => {
     }
   };
   return (
-    <div className='row p-4'>
+    <div className='row align-items-center justify-content-center '>
       {packages.map((item, index) => (
         <div
           key={index}
@@ -27,7 +27,7 @@ const PackageCard = ({ packages }) => {
             onClick={() =>
               handleNavigation(`/package/tour-package-single/${item.slug}`)
             }
-            className='position-relative  rounded-4'
+            className='position-relative  rounded-4 pointer'
           >
             <img
               src={item.image_path}

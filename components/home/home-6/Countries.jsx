@@ -23,10 +23,10 @@ const Countries = () => {
 
   return (
     <div className='d-flex justify-content-center align-items-center '>
-      <div className='row w-75'>
+      <div className='row w-md-75 px-2 px-md-0'>
         {countries.map((item) => (
           <div
-            className='col-lg-3 col-md-6 mb-4 d-flex justify-content-start gy-5' // Center each column
+            className='col-lg-3 col-md-6 col-6 mb-4 d-flex justify-content-start gy-5' // Center each column
             data-aos='fade'
             key={item.id}
           >

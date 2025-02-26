@@ -1,95 +1,141 @@
-import CallToActions from "../../../components/common/CallToActions";
-import Seo from "../../../components/common/Seo";
-import Header11 from "../../../components/header/header-11";
-import DefaultFooter from "../../../components/footer/default";
-import MainFilterSearchBox from "../../../components/flight-list/flight-list-v1/MainFilterSearchBox";
-import TopHeaderFilter from "../../../components/flight-list/flight-list-v1/TopHeaderFilter";
-import FlightProperties from "../../../components/flight-list/flight-list-v1/FlightProperties";
-import Pagination from "../../../components/flight-list/common/Pagination";
-import Sidebar from "../../../components/flight-list/flight-list-v1/Sidebar";
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import axios from 'axios';
+import CallToActions from '../../../components/common/CallToActions';
+import Seo from '../../../components/common/Seo';
+import Header3 from '../../../components/header/header-3';
+import Footer7 from '../../../components/footer/footer-7';
+import TopHeaderFilter from '../../../components/flight-list/flight-list-v1/TopHeaderFilter';
+import FlightProperties from '../../../components/flight-list/flight-list-v1/FlightProperties';
+import Sidebar from '../../../components/flight-list/flight-list-v1/Sidebar';
+import FlightDetails from '../../../components/flight-list/flight-list-v1/FlightDetails';
+import DatePriceSlider from '../../../components/flight-list/flight-list-v1/DatePriceSlider';
+import { baseUrl } from '../../../utils/network';
+import FlightFilters from '../../../components/flight-list/flight-list-v1/FlightFilters';
 
-const index = () => {
+const FlightList = () => {
+  const router = useRouter();
+  const [flightData, setFlightData] = useState(null);
+  const [filterData, setFilterData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (!router.isReady) return; // Ensure router is ready before accessing query params
+
+    // Extract query params
+    const {
+      originLocation,
+      destinationLocation,
+      departureDateTime,
+      adultRequest,
+      isReturn,
+      childRequest,
+    } = router.query;
+
+    if (
+      !originLocation ||
+      !destinationLocation ||
+      !adultRequest ||
+      !childRequest ||
+      !isReturn ||
+      !departureDateTime
+    ) {
+      setError('Missing required query parameters.');
+      setLoading(false);
+      return;
+    }
+
+    // Prepare request body
+    const requestBody = {
+      departureDateTime: departureDateTime + 'T11:00:00', // Append time to match API format
+      originLocation,
+      destinationLocation,
+      isReturn,
+      adultRequest: Number(adultRequest), // Ensure number format
+      childRequest: Number(childRequest), // Ensure number format
+    };
+
+    console.log('Posting data:', requestBody);
+
+    // Make API request
+    axios
+      .post(`${baseUrl}/frontend/flight/data/search`, requestBody)
+      .then((response) => {
+        console.log('API Response:', response.data);
+        setFlightData(response.data.data.flights);
+        setFilterData(response.data.data.filterData);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error('API Error:', err);
+        setError('Failed to fetch flight data.');
+        setLoading(false);
+      });
+  }, [router.isReady, router.query]);
+
+  {
+    /* Full Page Loader */
+  }
+  {
+    loading && (
+      <div className='loading-overlay'>
+        <img src='/img/gif/flight1.gif' className='loading-gif' />
+      </div>
+    );
+  }
+
   return (
     <>
-      <Seo pageTitle="Flight List v1" />
-      {/* End Page Title */}
+      <Seo pageTitle='Flight List v1' />
+      <div className='header-margin'></div>
+      <Header3 />
 
-      <div className="header-margin"></div>
-      {/* header top margin */}
-
-      <Header11 />
-      {/* End Header 1 */}
-
-      <section className="pt-40 pb-40">
-        <div className="container">
-          <MainFilterSearchBox />
-        </div>
-      </section>
-      {/* Top SearchBanner */}
-
-      <section className="layout-pt-md layout-pb-md bg-light-2">
-        <div className="container">
-          <div className="row y-gap-30">
-            <div className="col-xl-3">
-              <aside className="sidebar py-20 px-20 xl:d-none bg-white">
-                <div className="row y-gap-40">
-                  <Sidebar />
-                </div>
-              </aside>
-              {/* End sidebar for desktop */}
-
-              <div
-                className="offcanvas offcanvas-start"
-                tabIndex="-1"
-                id="listingSidebar"
-              >
-                <div className="offcanvas-header">
-                  <h5 className="offcanvas-title" id="offcanvasLabel">
-                    Filter Tours
-                  </h5>
-                  <button
-                    type="button"
-                    className="btn-close"
-                    data-bs-dismiss="offcanvas"
-                    aria-label="Close"
-                  ></button>
-                </div>
-                {/* End offcanvas header */}
-
-                <div className="offcanvas-body">
-                  <aside className="sidebar y-gap-40  xl:d-block">
-                    <Sidebar />
+      <section className='layout-pt-md layout-pb-md bg-light-2'>
+        {loading ? (
+          <div
+            style={{
+              height: '80vh ',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <img src='/img/gif/flight1.gif' className='loading-gif' />
+          </div>
+        ) : (
+          <>
+            <DatePriceSlider />
+            <div className='container'>
+              <div className='row y-gap-30'>
+                <div className='col-xl-3'>
+                  <aside className='sidebar py-20 px-20 xl:d-none bg-white'>
+                    <Sidebar filterData={filterData} />
                   </aside>
                 </div>
-                {/* End offcanvas body */}
-              </div>
-              {/* End mobile menu sidebar */}
-            </div>
-            {/* End col */}
 
-            <div className="col-xl-9 ">
-              <TopHeaderFilter />
-
-              <div className="row">
-                <FlightProperties />
+                <div className='col-xl-9'>
+                  <TopHeaderFilter />
+                  {error ? (
+                    <p className='text-danger'>{error}</p>
+                  ) : (
+                    <>
+                      <FlightFilters filterData={filterData} />
+                      {/* <FlightDetails flightData={flightData} /> */}
+                      <FlightProperties flightData={flightData} />
+                    </>
+                  )}
+                </div>
               </div>
-              {/* End .row */}
-              <Pagination />
             </div>
-            {/* End .col for right content */}
-          </div>
-          {/* End .row */}
-        </div>
-        {/* End .container */}
+          </>
+        )}
       </section>
-      {/* End layout for listing sidebar and content */}
 
-      <CallToActions />
-      {/* End Call To Actions Section */}
-
-      <DefaultFooter />
+      {/* <CallToActions /> */}
+      <Footer7 />
     </>
   );
 };
 
-export default index;
+export default FlightList;

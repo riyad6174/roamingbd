@@ -53,16 +53,16 @@ const BlockGuide = () => {
     <>
       {blockContent.map((item) => (
         <div
-          className='col-lg-3 col-md-6 gap-4'
+          className='col-lg-3 col-6 gap-4 '
           data-aos='fade'
           data-aos-delay={item.delayAnim}
           key={item.id}
         >
-          <div className='d-flex gap-2 align-items-center pr-30'>
+          <div className='d-flex gap-2 align-items-center '>
             <div className='d-flex justify-center'>
               <img src={item.icon} alt='image' className='size-30' />
             </div>
-            <h4 className='text-18 fw-500'>{item.title}</h4>
+            <h4 className='text-14  fw-500'>{item.title}</h4>
             <div className='ml-15'>
               {/* <p className="text-15 mt-10">{item.text}</p> */}
             </div>

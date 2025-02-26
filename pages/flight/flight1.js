@@ -1,33 +1,16 @@
 import dynamic from 'next/dynamic';
 import Seo from '../../components/common/Seo';
 import Header3 from '../../components/header/header-3';
-import Hero11 from '../../components/hero/hero-11';
-import TopDestinations from '../../components/destinations/TopDestinations';
 import TopDestinations2 from '../../components/home/home-10/TopDestinations';
-
-import Hotels from '../../components/hotels/Hotels2';
 import Link from 'next/link';
-import Tours from '../../components/tours/Tours';
-import Activity from '../../components/activity/Activity';
-import Rentals from '../../components/rentals/Rentals';
-import Cars from '../../components/cars/Cars';
-import Cruise from '../../components/cruise/Cruise';
-import Flights from '../../components/flight/Flights';
 import Footer7 from '../../components/footer/footer-7';
-
-import AddBanner from '../../components/home/home-3/AddBanner';
-import WhyChoose from '../../components/home/home-3/WhyChoose';
 import SearchBoxContent from '../../components/hero/hero-9/SearchBoxContent';
-import PopularDestinations from '../../components/destinations/PopularDestinations';
 import PopularDestinations9 from '../../components/home/home-9/PoularDestinations';
-
 import PopularRoutes from '../../components/home/home-10/PopularRoutes';
 import BlockGuide from '../../components/home/home-6/BlockGuide';
-import Blog4 from '../../components/blog/Blog4';
 import Copyright from '../../components/footer/footer-7/Copyright';
 import ParallaxBanner from '../../components/banner/ParallaxBanner';
 import FilterHotelsTabs2 from '../../components/hotels/filter-tabs/FilterHotelsTabs2';
-import FilterHotels2 from '../../components/hotels/FilterHotels2';
 import Travellers from '../../components/home/home-2/Travellers';
 import TourCategories from '../../components/home/home-6/TourCategories';
 import Faq from '../../components/faq/Faq';
@@ -118,7 +101,7 @@ const home_3 = () => {
       </section>
 
       <section
-        className='layout-pt-lg layout-pb-md relative'
+        className='layout-pt-lg layout-pb-md relative bg-light'
         id='secondSection'
       >
         <div className='container'>
@@ -140,7 +123,7 @@ const home_3 = () => {
           </div>
           {/* End .row */}
 
-          <div className='row x-gap-10 y-gap-10 pt-40 sm:pt-20 item_gap-x10'>
+          <div className='row x-gap-10  y-gap-10 pt-40 sm:pt-20 item_gap-x10'>
             <PopularDestinations9 />
           </div>
           {/* End .row */}

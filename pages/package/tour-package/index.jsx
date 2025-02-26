@@ -66,7 +66,7 @@ const Home3 = () => {
               </div>
             </div>
 
-            <div className='row y-gap-30 pt-40'>
+            <div className='md-row y-gap-30 pt-40'>
               {index % 2 === 0 ? (
                 <PackageCard packages={category.packages} />
               ) : (

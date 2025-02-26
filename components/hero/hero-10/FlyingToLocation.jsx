@@ -1,112 +1,174 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { IoMdSwap } from 'react-icons/io';
 
-const FlyingToLocation = () => {
+const FlyingFromLocation = ({
+  airportList,
+  onSelectAirportTo,
+  onSearch,
+  isLoadingFrom = false,
+  setIsDropdownOpenTo,
+  isDropdownOpenTo = false,
+  handleToDropdownOpen,
+}) => {
   const [searchValue, setSearchValue] = useState('');
   const [selectedItem, setSelectedItem] = useState(null);
-
-  const locationSearchContent = [
-    {
-      id: 1,
-      name: 'London',
-      address: 'Greater London, United Kingdom',
-    },
-    {
-      id: 2,
-      name: 'New York',
-      address: 'New York State, United States',
-    },
-    {
-      id: 3,
-      name: 'Paris',
-      address: 'France',
-    },
-    {
-      id: 4,
-      name: 'Madrid',
-      address: 'Spain',
-    },
-    {
-      id: 5,
-      name: 'Santorini',
-      address: 'Greece',
-    },
-  ];
+  // const [isDropdownOpen, setIsDropdownOpenTo] = useState(false);
+  const dropdownRef = useRef(null);
 
   const handleOptionClick = (item) => {
-    setSearchValue(item.name);
     setSelectedItem(item);
+    setSearchValue(`${item.name} (${item.code})`);
+    setIsDropdownOpenTo(false);
+    onSelectAirportTo(item);
   };
 
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchValue(value);
+    onSearch(value);
+  };
+
+  // useEffect(() => {
+  //   if (searchValue) {
+  //     setIsDropdownOpenTo(true);
+  //   }
+  // }, [airportList]);
+
+  // const handleClickOutside = (event) => {
+  //   if (
+  //     dropdownRef.current &&
+  //     !dropdownRef.current.contains(event.target) &&
+  //     !event.target.closest('.searchMenu-loc')
+  //   ) {
+  //     setIsDropdownOpenTo(false);
+  //     onSearch('');
+  //   }
+  // };
+
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsDropdownOpenTo(false); // Only manage own state
+      onSearch('');
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <>
-      {/* <div
-        style={{ padding: '6px 0' }}
-        className='searchMenu-loc px-24 lg:py-20 lg:px-0 js-form-dd js-liverSearch'
+    <div ref={dropdownRef} className='relative'>
+      <div
+        style={{
+          padding: '10px',
+          // border: '1px solid #a5a4a4',
+          borderRadius: '5px',
+          cursor: 'pointer',
+        }}
+        className='searchMenu-loc border px-24 lg:py-20 lg:px-0 js-form-dd js-liverSearch relative'
+        onClick={() => {
+          // setIsDropdownOpenTo(true);
+          setSearchValue('');
+          onSearch('');
+          handleToDropdownOpen();
+        }}
       >
+        <h4 className='text-15 text-light-1 fw-300 ls-2 lh-16'>Going To</h4>
+        <div className='text-15 fw-600 text-light-1 ls-2 lh-16'>
+          {selectedItem
+            ? `${selectedItem.city}, ${selectedItem.code}`
+            : 'City, airport'}
+        </div>
+      </div>
+
+      {isDropdownOpenTo && (
         <div
-          data-bs-toggle='dropdown'
-          data-bs-auto-close='true'
-          data-bs-offset='0,22'
+          className='shadow-2 min-width-400'
+          style={{
+            position: 'absolute',
+            zIndex: 999,
+            background: 'white',
+            width: '100%',
+          }}
         >
-          <h4 className='text-15 fw-500 ls-2 lh-16'>Going To</h4>
-          <div className='text-15 text-light-1 ls-2 lh-16'>
+          <div className='bg-white px-20 py-20 rounded-4'>
             <input
               autoComplete='off'
               type='search'
-              placeholder='Where are you going?'
-              className='js-search js-dd-focus'
+              placeholder='City, airport'
+              className='form-control mb-2 border py-10'
               value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
+              onChange={handleSearchChange}
+              onClick={(e) => e.stopPropagation()}
             />
-          </div>
-        </div>
 
-        <div className='shadow-2 dropdown-menu min-width-400'>
-          <div className='bg-white px-20 py-20 sm:px-0 sm:py-15 rounded-4'>
-            <ul className='y-gap-5 js-results'>
-              {locationSearchContent.map((item) => (
-                <li
-                  className={`-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option mb-1 ${
-                    selectedItem && selectedItem.id === item.id ? 'active' : ''
-                  }`}
-                  key={item.id}
-                  role='button'
-                  onClick={() => handleOptionClick(item)}
+            {isLoadingFrom ? (
+              <div class='d-flex justify-content-center'>
+                <div
+                  class='spinner-border spinner-border-sm text-primary mt-2'
+                  role='status'
                 >
-                  <div className='d-flex'>
-                    <div className='icon-location-2 text-light-1 text-20 pt-4' />
-                    <div className='ml-10'>
-                      <div className='text-15 lh-12 fw-500 js-search-option-target'>
-                        {item.name}
+                  <span class='visually-hidden'>Loading...</span>
+                </div>
+              </div>
+            ) : (
+              <ul className='y-gap-5 js-results'>
+                {airportList.length > 0 ? (
+                  airportList.map((item, index) => (
+                    <li
+                      className={`-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option mb-1 ${
+                        selectedItem && selectedItem.code === item.code
+                          ? 'active'
+                          : ''
+                      }`}
+                      key={index}
+                      role='button'
+                      onClick={() => handleOptionClick(item)}
+                    >
+                      <div className='d-flex'>
+                        <div className='icon-location-2 text-light-1 text-20 pt-4' />
+                        <div className='ml-10'>
+                          <div className='text-15 lh-12 fw-500 js-search-option-target'>
+                            {item.city}, {item.country}
+                          </div>
+                          <div className='text-14 lh-12 text-light-1 mt-5'>
+                            {item.name} ({item.code})
+                          </div>
+                        </div>
                       </div>
-                      <div className='text-14 lh-12 text-light-1 mt-5'>
-                        {item.address}
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              ))}
-            </ul>
+                    </li>
+                  ))
+                ) : (
+                  <li className='text-center text-muted py-2'>
+                    No airports found
+                  </li>
+                )}
+              </ul>
+            )}
           </div>
         </div>
-      </div> */}
-      <div
+      )}
+
+      {/* <button
         style={{
-          padding: '8px 8px',
-          border: '1px solid rgb(165, 164, 164)',
-          borderRadius: '5px',
+          position: 'absolute',
+          right: '-25px',
+          top: '10px',
+          height: '40px',
+          width: '40px',
+          borderRadius: '100%',
+          backgroundColor: 'white',
+          zIndex: '999',
         }}
-        className='relative pl-20 pr-30 searchMenu-date js-form-dd js-calendar d-flex gap-3 align-items-center justify-content-between px-2 '
+        className='border'
       >
-        <div className='d-flex flex-column align-items-start'>
-          <span className='text-14 fw-300 ls-2 text-muted lh-16'>Going to</span>
-          <span className='text-14 fw-600 ls-2 lh-16 text-muted'>
-            City, airport
-          </span>
-        </div>
-      </div>
-    </>
+        <IoMdSwap style={{ color: 'blue', fontWeight: '700' }} />
+      </button> */}
+    </div>
   );
 };
 
-export default FlyingToLocation;
+export default FlyingFromLocation;

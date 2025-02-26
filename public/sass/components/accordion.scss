@@ -22,7 +22,7 @@
     }
   }
 
-  &__item .accordion__button[aria-expanded="true"] .accordion__icon {
+  &__item .accordion__button[aria-expanded='true'] .accordion__icon {
     > *:nth-child(1) {
       transform: rotate(90deg);
       opacity: 0;
@@ -83,7 +83,7 @@
     }
   }
 
-  &__item .accordion__button[aria-expanded="true"] .accordion__icon {
+  &__item .accordion__button[aria-expanded='true'] .accordion__icon {
     background-color: var(--color-dark-1) !important;
     color: white !important;
 

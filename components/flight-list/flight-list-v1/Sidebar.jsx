@@ -9,7 +9,15 @@ import FlightSchedules from '../sidebar/FlightSchedules';
 import { useState } from 'react';
 import BaggagePolicy from '../sidebar/BaggagePolicy';
 
-const Sidebar = ({ filterData }) => {
+const Sidebar = ({
+  filterData,
+  selectedAirlines,
+  onSelectAirlines,
+  onPriceChange,
+  priceRange,
+  onSelectBaggage,
+  onSelectStops,
+}) => {
   const [openSections, setOpenSections] = useState({
     stops: true,
     flightSchedules: true,
@@ -71,13 +79,13 @@ const Sidebar = ({ filterData }) => {
         </div>
         {openSections.stops && (
           <div className='sidebar-checkbox'>
-            <Stops />
+            <Stops onSelectStops={onSelectStops} />
           </div>
         )}
       </div>
 
       {/* Flight Schedules */}
-      <div className='sidebar__item'>
+      {/* <div className='sidebar__item'>
         <div
           className='text-18 fw-500 mb-10 py-10 d-flex align-items-center justify-content-between'
           onClick={() => toggleSection('flightSchedules')}
@@ -120,7 +128,7 @@ const Sidebar = ({ filterData }) => {
             <FlightSchedules />
           </div>
         )}
-      </div>
+      </div> */}
 
       {/* Cabin */}
       {/* <div className='sidebar__item'>
@@ -213,6 +221,8 @@ const Sidebar = ({ filterData }) => {
               <PirceSlider
                 minPrice={filterData?.minTicketPrice}
                 maxPrice={filterData?.maxTicketPrice}
+                onPriceChange={onPriceChange}
+                currentPrice={priceRange}
               />
             </div>
           </div>
@@ -260,7 +270,11 @@ const Sidebar = ({ filterData }) => {
         </div>
         {openSections?.airlines && (
           <div className='sidebar-checkbox pb-20'>
-            <Airlines airplaneList={filterData?.airplaneList} />
+            <Airlines
+              airplaneList={filterData?.airplaneList}
+              selectedAirlines={selectedAirlines}
+              onSelectAirlines={onSelectAirlines}
+            />
           </div>
         )}
       </div>
@@ -396,9 +410,12 @@ const Sidebar = ({ filterData }) => {
             )}
           </span>
         </div>
-        {openSections.BaggagePolicy && (
+        {openSections?.BaggagePolicy && (
           <div className='sidebar-checkbox'>
-            <BaggagePolicy baggage={filterData?.baggageList} />
+            <BaggagePolicy
+              baggage={filterData?.baggageList}
+              onSelectBaggage={onSelectBaggage}
+            />
           </div>
         )}
       </div>

@@ -23,7 +23,11 @@ const FlightFilters = ({ filterData }) => {
   }, []);
 
   const tabs = [
-    { key: 'cheapest', label: 'Cheapest', value: '12,290' },
+    {
+      key: 'cheapest',
+      label: 'Cheapest',
+      value: `৳${filterData?.minTicketPrice}`,
+    },
     { key: 'earliest', label: 'Earliest', value: '07:15 AM' },
     { key: 'fastest', label: 'Fastest', value: '2 Hr 5 Min' },
   ];
@@ -91,7 +95,7 @@ const FlightFilters = ({ filterData }) => {
               {' '}
               {/* Increase width here */}
               <div
-                className='airline-name p-2 border bg-light text-center text-12'
+                className='airline-name p-2 px-40 border bg-light text-center text-12'
                 style={{ minWidth: '250px' }}
               >
                 <div className='d-flex align-items-center gap-2'>
@@ -115,7 +119,7 @@ const FlightFilters = ({ filterData }) => {
         <button
           className='swiper-button-prev-custom h-100 position-absolute top-50 start-0 translate-middle-y bg-blue-1 rounded-left text-white p-2 '
           style={{
-            zIndex: 10,
+            zIndex: 5,
             opacity: 1,
             display: 'flex',
             alignItems: 'center',
@@ -127,7 +131,7 @@ const FlightFilters = ({ filterData }) => {
         <button
           className='swiper-button-next-custom h-100 position-absolute top-50 end-0 translate-middle-y bg-blue-1 text-white p-2 '
           style={{
-            zIndex: 10,
+            zIndex: 5,
             opacity: 1,
             display: 'flex',
             alignItems: 'center',

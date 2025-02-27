@@ -1,17 +1,11 @@
-import { useState } from 'react';
 // onSelectAirlines
-const Airlines = ({ airplaneList }) => {
-  const [selectedAirlines, setSelectedAirlines] = useState([]);
-
+const Airlines = ({ airplaneList, selectedAirlines, onSelectAirlines }) => {
   const handleCheckboxChange = (code) => {
-    setSelectedAirlines((prevSelected) => {
-      const updatedSelection = prevSelected.includes(code)
-        ? prevSelected.filter((c) => c !== code) // Remove if already selected
-        : [...prevSelected, code]; // Add if not selected
+    const updatedAirlines = selectedAirlines.includes(code)
+      ? selectedAirlines.filter((c) => c !== code)
+      : [...selectedAirlines, code];
 
-      // onSelectAirlines(updatedSelection); // Pass selected airline codes to parent
-      return updatedSelection;
-    });
+    onSelectAirlines(updatedAirlines);
   };
 
   return (

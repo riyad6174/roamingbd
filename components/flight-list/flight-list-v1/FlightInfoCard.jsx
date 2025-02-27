@@ -31,7 +31,7 @@ const FlightInfoCard = ({ info }) => {
           1024: { slidesPerView: 4 },
         }}
       >
-        {info.map((flight) => (
+        {info?.map((flight) => (
           <SwiperSlide key={flight.id}>
             <div className='card rounded-0 flight-card2'>
               <img
@@ -83,7 +83,7 @@ const FlightInfoCard = ({ info }) => {
                   )} */}
 
                   {/* Check if refund is allowed before displaying */}
-                  {flight.penaltiesInfo?.some(
+                  {flight?.penaltiesInfo?.some(
                     (p) => p.type === 'Refund' && p.refundable
                   ) && (
                     <>
@@ -111,7 +111,7 @@ const FlightInfoCard = ({ info }) => {
 
                 <div className='d-flex py-4 justify-content-start gap-4'>
                   <span className='fw-bold py-1 text-18 text-primary'>
-                    ৳ {flight.totalFare.totalPrice}
+                    ৳ {flight?.totalFare?.totalPrice}
                   </span>
                   {/* <span className='old-price fw-bold text-12 mt-1'>
                     {flight.oldPrice}

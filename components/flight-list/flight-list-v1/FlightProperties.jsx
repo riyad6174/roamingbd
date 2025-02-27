@@ -1,7 +1,8 @@
+import moment from 'moment';
 import flightsData from '../../../data/flights';
 import FlightInfoCard from './FlightInfoCard';
 
-const FlightProperties = ({ flightData }) => {
+const FlightProperties = ({ flightData, departureDate }) => {
   console.log(flightData, 'flightData');
 
   const formatTime = (timeString) => {
@@ -69,7 +70,7 @@ const FlightProperties = ({ flightData }) => {
                           {formatTime(item?.departure?.time)}
                         </div>
                         <div className='text-15 lh-15 text-light-1'>
-                          22 Dec, Sunday
+                          {moment(departureDate).format('DD MMM, dddd')}
                         </div>
                         <div className='text-12 lh-15 text-light-1'>
                           {item?.departure?.airport_details?.name}
@@ -104,7 +105,7 @@ const FlightProperties = ({ flightData }) => {
                           {formatTime(item?.arrival?.time)}
                         </div>
                         <div className='text-15 lh-15 text-light-1'>
-                          22 Dec, Sunday
+                          {moment(departureDate).format('DD MMM, dddd')}
                         </div>
                         <div className='text-12 lh-15 text-light-1'>
                           {item?.arrival?.airport_details?.name}
@@ -127,13 +128,17 @@ const FlightProperties = ({ flightData }) => {
                   <div className='pl-30 border-left-light h-full md:d-none' />
                   <div className=' bg-blue-1 p-2 text-white rounded-4'>
                     <div className='text-right md:text-left mb-10'>
-                      <div className='text-20 fw-bold lh-16 text-white'>
-                        ৳
-                        {
-                          item?.fare?.pricingInformation[0]?.totalFare
-                            ?.totalPrice
-                        }
-                      </div>
+                      {item?.fare?.pricingInformation?.length > 0 ? (
+                        <div className='text-20 fw-bold lh-16 text-white'>
+                          ৳
+                          {
+                            item?.fare?.pricingInformation[0]?.totalFare
+                              ?.totalPrice
+                          }
+                        </div>
+                      ) : (
+                        'No Info'
+                      )}
                       {/* <span className='old-price fw-bold text-white text-14 mt-1'>
                         $12,460
                       </span> */}

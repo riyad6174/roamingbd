@@ -1,18 +1,30 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import InputRange from 'react-input-range';
-// onPriceChange;
-const PriceSlider = ({ minPrice, maxPrice }) => {
-  const [price, setPrice] = useState({ min: minPrice, max: maxPrice });
+import debounce from 'lodash.debounce';
 
-  // Update state when minPrice or maxPrice change
+const PriceSlider = ({ minPrice, maxPrice, onPriceChange, currentPrice }) => {
+  const [price, setPrice] = useState(currentPrice);
+
+  // Sync local state with parent state
   useEffect(() => {
-    setPrice({ min: minPrice, max: maxPrice });
-  }, [minPrice, maxPrice]);
+    setPrice(currentPrice);
+  }, [currentPrice]);
 
-  // Handle slider changes and send data to parent
+  const debouncedPriceChange = useCallback(
+    debounce((value) => {
+      onPriceChange(value);
+    }, 500),
+    []
+  );
+
+  useEffect(() => {
+    return () => debouncedPriceChange.cancel();
+  }, []);
+
+  // Handle slider changes
   const handleOnChange = (value) => {
     setPrice(value);
-    // onPriceChange(value); // Pass updated values to the parent
+    debouncedPriceChange(value); // Call debounced function
   };
 
   return (
@@ -29,8 +41,8 @@ const PriceSlider = ({ minPrice, maxPrice }) => {
       <div className='px-5'>
         <InputRange
           formatLabel={() => ``}
-          minValue={minPrice} // Ensure slider respects minPrice
-          maxValue={maxPrice} // Ensure slider respects maxPrice
+          minValue={minPrice}
+          maxValue={maxPrice}
           value={price}
           onChange={handleOnChange}
         />

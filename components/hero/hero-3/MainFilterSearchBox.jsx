@@ -14,6 +14,7 @@ import { baseUrl } from '../../../utils/network';
 import DateSearch from '../../flight-list/common/DateSearch';
 import GuestSearch from '../../flight-list/common/GuestSearch';
 import DateSearchMulti from '../../flight-list/common/DateSearchMulti';
+import { DateObject } from 'react-multi-date-picker';
 
 const MainFilterSearchBox = () => {
   const router = useRouter();
@@ -24,12 +25,12 @@ const MainFilterSearchBox = () => {
   const [selectedCountryId, setSelectedCountryId] = useState(null);
   const [selectedVisaTypeId, setSelectedVisaTypeId] = useState(null);
   const [selectedLocation, setSelectedLocation] = useState(null);
-  const [airportList, setAirportList] = useState([]);
   const [selectedFromAirport, setSelectedFromAirport] = useState(null);
   const [selectedToAirport, setSelectedToAirport] = useState(null);
-  const [terms, setTerms] = useState('');
   const [isLoadingFrom, setIsLoadingFrom] = useState(false);
-  const [selectedDate, setSelectedDate] = useState('');
+  const [selectedDate, setSelectedDate] = useState(
+    new DateObject().format('YYYY-MM-DD')
+  );
   const [guestData, setGuestData] = useState({ Adults: 2, Children: 1 });
   const [isDropdownOpenFrom, setIsDropdownOpenFrom] = useState(false);
   const [isDropdownOpenTo, setIsDropdownOpenTo] = useState(false);

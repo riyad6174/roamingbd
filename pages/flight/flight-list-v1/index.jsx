@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import CallToActions from '../../../components/common/CallToActions';
@@ -19,6 +19,37 @@ const FlightList = () => {
   const [filterData, setFilterData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  // filter related states
+  const [selectedAirlines, setSelectedAirlines] = useState([]);
+  const [priceRange, setPriceRange] = useState({});
+  const [isPriceModified, setIsPriceModified] = useState(false);
+  const [selectedBaggage, setSelectedBaggage] = useState([]);
+  const [selectedStops, setSelectedStops] = useState([]);
+
+  const handlePriceChange = useCallback((newRange) => {
+    setIsPriceModified(true);
+    setPriceRange(newRange);
+  }, []);
+
+  // Update filterData effect
+  useEffect(() => {
+    if (filterData && !isPriceModified) {
+      setPriceRange({
+        min: filterData.minTicketPrice,
+        max: filterData.maxTicketPrice,
+      });
+    }
+  }, [filterData, isPriceModified]);
+
+  useEffect(() => {
+    if (filterData) {
+      setPriceRange({
+        min: filterData?.minTicketPrice,
+        max: filterData?.maxTicketPrice,
+      });
+    }
+  }, [filterData]);
 
   useEffect(() => {
     if (!router.isReady) return; // Ensure router is ready before accessing query params
@@ -54,6 +85,13 @@ const FlightList = () => {
       isReturn,
       adultRequest: Number(adultRequest), // Ensure number format
       childRequest: Number(childRequest), // Ensure number format
+      ticketPrice: {
+        min: priceRange.min ? priceRange.min : 0,
+        max: priceRange.max ? priceRange.max : 0,
+      },
+      airlines: selectedAirlines,
+      baggage: selectedBaggage ? selectedBaggage?.map((b) => b.id) : [],
+      stop: selectedStops ? selectedStops : [],
     };
 
     console.log('Posting data:', requestBody);
@@ -63,8 +101,8 @@ const FlightList = () => {
       .post(`${baseUrl}/frontend/flight/data/search`, requestBody)
       .then((response) => {
         console.log('API Response:', response.data);
-        setFlightData(response.data.data.flights);
-        setFilterData(response.data.data.filterData);
+        setFlightData(response?.data?.data?.flights);
+        setFilterData(response?.data?.data?.filterData);
         setLoading(false);
       })
       .catch((err) => {
@@ -72,7 +110,14 @@ const FlightList = () => {
         setError('Failed to fetch flight data.');
         setLoading(false);
       });
-  }, [router.isReady, router.query]);
+  }, [
+    router.isReady,
+    router.query,
+    selectedAirlines,
+    isPriceModified,
+    selectedBaggage,
+    selectedStops,
+  ]);
 
   {
     /* Full Page Loader */
@@ -105,27 +150,59 @@ const FlightList = () => {
           </div>
         ) : (
           <>
-            <DatePriceSlider />
+            <DatePriceSlider departureDate={filterData?.departureDate} />
+
             <div className='container'>
               <div className='row y-gap-30'>
                 <div className='col-xl-3'>
                   <aside className='sidebar py-20 px-20 xl:d-none bg-white'>
-                    <Sidebar filterData={filterData} />
+                    <Sidebar
+                      filterData={filterData}
+                      selectedAirlines={selectedAirlines}
+                      onSelectAirlines={setSelectedAirlines}
+                      onPriceChange={handlePriceChange}
+                      priceRange={priceRange}
+                      onSelectBaggage={setSelectedBaggage}
+                      onSelectStops={setSelectedStops}
+                    />
                   </aside>
                 </div>
 
-                <div className='col-xl-9'>
-                  <TopHeaderFilter />
-                  {error ? (
-                    <p className='text-danger'>{error}</p>
-                  ) : (
-                    <>
-                      <FlightFilters filterData={filterData} />
-                      {/* <FlightDetails flightData={flightData} /> */}
-                      <FlightProperties flightData={flightData} />
-                    </>
-                  )}
-                </div>
+                {flightData && (
+                  <div className='col-xl-9'>
+                    {/* <TopHeaderFilter flightData={flightData} /> */}
+                    {error ? (
+                      // <p className='text-danger'>{error}</p>
+                      <div
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          height: '80vh ',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}
+                      >
+                        <img
+                          src='/img/no-data.png'
+                          className='loading-gif'
+                          style={{ height: '400px' }}
+                        />
+                        <p className='text-24'>No Data Found!</p>
+                      </div>
+                    ) : (
+                      <>
+                        <FlightFilters filterData={filterData} />
+                        {/* <FlightDetails flightData={flightData} /> */}
+
+                        <FlightProperties
+                          flightData={flightData}
+                          departureDate={filterData?.departureDate}
+                        />
+                      </>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           </>

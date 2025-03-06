@@ -29,6 +29,10 @@ const FlightList = () => {
     setPriceRange(newRange);
   }, []);
 
+  useEffect(() => {
+    setIsPriceModified(false);
+  }, [selectedAirlines, selectedBaggage, selectedStops]);
+
   // Update filterData effect
   useEffect(() => {
     if (filterData && !isPriceModified) {
@@ -84,8 +88,17 @@ const FlightList = () => {
       adultRequest: Number(adultRequest), // Ensure number format
       childRequest: Number(childRequest), // Ensure number format
       ticketPrice: {
-        min: priceRange.min === priceRange.max ? 0 : priceRange.min || 0,
-        max: priceRange.min === priceRange.max ? 0 : priceRange.max || 0,
+        min: !isPriceModified
+          ? 0 // Send 0 if slider not modified
+          : priceRange.min === priceRange.max
+          ? 0 // Send 0 if min/max are same even when modified
+          : priceRange.min || 0,
+
+        max: !isPriceModified
+          ? 0 // Send 0 if slider not modified
+          : priceRange.min === priceRange.max
+          ? 0 // Send 0 if min/max are same even when modified
+          : priceRange.max || 0,
       },
       airlines: selectedAirlines,
       baggage: selectedBaggage ? selectedBaggage?.map((b) => b.id) : [],

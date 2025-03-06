@@ -1,14 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import CallToActions from '../../../components/common/CallToActions';
 import Seo from '../../../components/common/Seo';
 import Header3 from '../../../components/header/header-3';
 import Footer7 from '../../../components/footer/footer-7';
-import TopHeaderFilter from '../../../components/flight-list/flight-list-v1/TopHeaderFilter';
 import FlightProperties from '../../../components/flight-list/flight-list-v1/FlightProperties';
 import Sidebar from '../../../components/flight-list/flight-list-v1/Sidebar';
-import FlightDetails from '../../../components/flight-list/flight-list-v1/FlightDetails';
 import DatePriceSlider from '../../../components/flight-list/flight-list-v1/DatePriceSlider';
 import { baseUrl } from '../../../utils/network';
 import FlightFilters from '../../../components/flight-list/flight-list-v1/FlightFilters';
@@ -19,7 +16,7 @@ const FlightList = () => {
   const [filterData, setFilterData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const [filterLoading, setFilterLoading] = useState(false);
   // filter related states
   const [selectedAirlines, setSelectedAirlines] = useState([]);
   const [priceRange, setPriceRange] = useState({});
@@ -53,7 +50,7 @@ const FlightList = () => {
 
   useEffect(() => {
     if (!router.isReady) return; // Ensure router is ready before accessing query params
-
+    setFilterLoading(true);
     // Extract query params
     const {
       originLocation,
@@ -74,6 +71,7 @@ const FlightList = () => {
     ) {
       setError('Missing required query parameters.');
       setLoading(false);
+      setFilterLoading(false);
       return;
     }
 
@@ -86,8 +84,8 @@ const FlightList = () => {
       adultRequest: Number(adultRequest), // Ensure number format
       childRequest: Number(childRequest), // Ensure number format
       ticketPrice: {
-        min: priceRange.min ? priceRange.min : 0,
-        max: priceRange.max ? priceRange.max : 0,
+        min: priceRange.min === priceRange.max ? 0 : priceRange.min || 0,
+        max: priceRange.min === priceRange.max ? 0 : priceRange.max || 0,
       },
       airlines: selectedAirlines,
       baggage: selectedBaggage ? selectedBaggage?.map((b) => b.id) : [],
@@ -104,11 +102,13 @@ const FlightList = () => {
         setFlightData(response?.data?.data?.flights);
         setFilterData(response?.data?.data?.filterData);
         setLoading(false);
+        setFilterLoading(false);
       })
       .catch((err) => {
         console.error('API Error:', err);
         setError('Failed to fetch flight data.');
         setLoading(false);
+        setFilterLoading(false);
       });
   }, [
     router.isReady,
@@ -171,34 +171,56 @@ const FlightList = () => {
                 {flightData && (
                   <div className='col-xl-9'>
                     {/* <TopHeaderFilter flightData={flightData} /> */}
-                    {error ? (
-                      // <p className='text-danger'>{error}</p>
+                    {error || !flightData || flightData.length === 0 ? (
                       <div
                         style={{
                           display: 'flex',
                           flexDirection: 'column',
-                          height: '80vh ',
-                          display: 'flex',
+                          height: '80vh',
                           alignItems: 'center',
                           justifyContent: 'center',
+                          textAlign: 'center',
                         }}
                       >
                         <img
                           src='/img/no-data.png'
-                          className='loading-gif'
-                          style={{ height: '400px' }}
+                          alt='No Data Found'
+                          style={{ height: '400px', marginBottom: '20px' }}
                         />
-                        <p className='text-24'>No Data Found!</p>
+                        <p className='text-24 text-dark-1'>No Data Found!</p>
+                        <p className='text-16 text-light-1'>
+                          Try adjusting your filters or searching for another
+                          route.
+                        </p>
                       </div>
                     ) : (
                       <>
                         <FlightFilters filterData={filterData} />
                         {/* <FlightDetails flightData={flightData} /> */}
 
-                        <FlightProperties
-                          flightData={flightData}
-                          departureDate={filterData?.departureDate}
-                        />
+                        {filterLoading ? (
+                          <div
+                            style={{
+                              height: '50vh',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                            }}
+                          >
+                            <img
+                              src='/img/gif/flight1.gif'
+                              className='loading-gif'
+                            />
+                          </div>
+                        ) : (
+                          <FlightProperties
+                            flightData={flightData}
+                            departureDate={filterData?.departureDate}
+                            queryParams={router.query}
+                            adultCount={router.query.adultRequest}
+                            childCount={router.query.childRequest}
+                          />
+                        )}
                       </>
                     )}
                   </div>

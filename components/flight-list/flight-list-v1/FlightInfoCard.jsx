@@ -4,7 +4,9 @@ import { Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-
+import axios from 'axios';
+import { baseUrl } from '../../../utils/network';
+import { useRouter } from 'next/router';
 // Cabin Code Mapping
 const getCabinClassName = (cabinCode) => {
   const cabinClassMap = {
@@ -18,7 +20,81 @@ const getCabinClassName = (cabinCode) => {
   return cabinClassMap[cabinCode] || 'Unknown Class'; // Default if code is missing
 };
 
-const FlightInfoCard = ({ info }) => {
+const FlightInfoCard = ({
+  info,
+  queryParams,
+  flightItem,
+  adultCount,
+  childCount,
+  departureDate,
+}) => {
+  const router = useRouter();
+
+  console.log(flightItem, '==================info');
+
+  // Calculate arrival date-time function
+  const calculateArrivalDateTime = () => {
+    const departureDateObj = new Date(departureDate);
+    const departureTime = flightItem.departure.time.split('+')[0];
+    const [hours, minutes] = departureTime.split(':');
+
+    // Set initial departure datetime
+    departureDateObj.setHours(hours);
+    departureDateObj.setMinutes(minutes);
+
+    // Add flight duration (elapsedTime is in minutes)
+    const arrivalDateObj = new Date(
+      departureDateObj.getTime() + flightItem.elapsedTime * 60 * 1000
+    );
+
+    // Apply date adjustment if exists
+    if (flightItem.arrival.dateAdjustment) {
+      arrivalDateObj.setDate(
+        arrivalDateObj.getDate() + flightItem.arrival.dateAdjustment
+      );
+    }
+
+    // Format to ISO string with timezone
+    // const timeZone = flightItem.arrival.time.split('+')[1];
+    return `${arrivalDateObj.toISOString().split('.')[0]}`;
+  };
+
+  const handleBookNow = (selectedFlight) => {
+    console.log(selectedFlight, 'selected');
+
+    // Prepare the payload
+    const payload = {
+      departureDateTime: `${queryParams.departureDateTime}T11:00:00`,
+      arrivalDateTime: calculateArrivalDateTime(),
+      originLocation: flightItem.departure.airport,
+      destinationLocation: flightItem.arrival.airport,
+      adultRequest: parseInt(adultCount, 10),
+      childRequest: parseInt(childCount, 10),
+      airlineOperating: flightItem.carrier.operating,
+      airlineMarketing: flightItem.carrier.marketing,
+      flightNumber: flightItem.carrier.marketingFlightNumber,
+      flightClass: selectedFlight.cabinCode,
+    };
+
+    // Trigger the API call
+    axios
+      .post(`${baseUrl}/frontend/flight/data/confirm`, payload)
+      .then((response) => {
+        console.log('Booking successful:', response.data);
+
+        const queryString = new URLSearchParams(payload).toString();
+        router.push({
+          pathname: '/flight/booking',
+          query: queryString, // Next.js automatically encodes this
+        });
+        // Handle redirection or success message
+      })
+      .catch((error) => {
+        console.error('Booking error:', error);
+        // Handle error message
+      });
+  };
+
   return (
     <div className=''>
       <Swiper
@@ -118,7 +194,10 @@ const FlightInfoCard = ({ info }) => {
                   </span> */}
                 </div>
 
-                <button className='btn bg-blue-1 text-white w-100'>
+                <button
+                  onClick={() => handleBookNow(flight)}
+                  className='btn bg-blue-1 text-white w-100'
+                >
                   Book now
                 </button>
               </div>

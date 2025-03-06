@@ -9,7 +9,7 @@ const HotelProperties2 = () => {
     <>
       {hotelsData.slice(0, 1).map((item) => (
         <div className='col-12 ' key={item?.id}>
-          <div className=' pt-30'>
+          <div className=' pt-0'>
             <div className='row x-gap-20 bg-white border y-gap-20'>
               <div className='col-md-auto'>
                 <div className='cardImage ratio ratio-1:1 w-250 md:w-1/1 rounded-4'>

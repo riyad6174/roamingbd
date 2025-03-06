@@ -1,8 +1,19 @@
 import moment from 'moment';
-import flightsData from '../../../data/flights';
 import FlightInfoCard from './FlightInfoCard';
 
-const FlightProperties = ({ flightData, departureDate }) => {
+//      flightData={flightData}
+// departureDate={filterData?.departureDate}
+// queryParams={router.query}
+// adultCount={router.query.adultRequest}
+// childCount={router.query.childRequest}
+
+const FlightProperties = ({
+  flightData,
+  departureDate,
+  queryParams,
+  adultCount,
+  childCount,
+}) => {
   console.log(flightData, 'flightData');
 
   const formatTime = (timeString) => {
@@ -163,7 +174,14 @@ const FlightProperties = ({ flightData, departureDate }) => {
             <div className='collapse' id={`flight-${item?.id}`}>
               <div className=' my-4'>
                 <div className=' '>
-                  <FlightInfoCard info={item?.fare?.pricingInformation} />
+                  <FlightInfoCard
+                    info={item?.fare?.pricingInformation}
+                    queryParams={queryParams}
+                    flightItem={item}
+                    adultCount={adultCount}
+                    childCount={childCount}
+                    departureDate={departureDate}
+                  />
                 </div>
               </div>
             </div>

@@ -6,9 +6,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
-const FlightFilters = ({ filterData }) => {
+const FlightFilters = ({ filterData, selectedSort, setSelectedSort }) => {
   console.log(filterData, 'ffffffffffffff');
-  const [activeTab, setActiveTab] = useState('cheapest');
+  const [activeTab, setActiveTab] = useState('');
 
   useEffect(() => {
     // Force Swiper to recognize the custom buttons
@@ -32,6 +32,11 @@ const FlightFilters = ({ filterData }) => {
     { key: 'fastest', label: 'Fastest', value: '2 Hr 5 Min' },
   ];
 
+  const handleSort = (tab) => {
+    setSelectedSort(tab.key);
+    setActiveTab(tab.key);
+  };
+
   return (
     <div className='container mt-3'>
       <div className='d-flex flex-wrap justify-content-between text-dark rounded'>
@@ -43,7 +48,7 @@ const FlightFilters = ({ filterData }) => {
                 ? 'active text-14 border-blue-1 bg-blue-1 text-white'
                 : ''
             }`}
-            onClick={() => setActiveTab(tab.key)}
+            onClick={() => handleSort(tab)}
           >
             <span>{tab.label}</span>
             <strong>{tab.value}</strong>

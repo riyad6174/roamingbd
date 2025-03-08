@@ -17,6 +17,7 @@ const FlightList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [filterLoading, setFilterLoading] = useState(false);
+  const [selectedSort, setSelectedSort] = useState('');
   // filter related states
   const [selectedAirlines, setSelectedAirlines] = useState([]);
   const [priceRange, setPriceRange] = useState({});
@@ -103,6 +104,7 @@ const FlightList = () => {
       airlines: selectedAirlines,
       baggage: selectedBaggage ? selectedBaggage?.map((b) => b.id) : [],
       stop: selectedStops ? selectedStops : [],
+      sortBy: selectedSort,
     };
 
     console.log('Posting data:', requestBody);
@@ -130,6 +132,7 @@ const FlightList = () => {
     isPriceModified,
     selectedBaggage,
     selectedStops,
+    selectedSort,
   ]);
 
   {
@@ -208,7 +211,12 @@ const FlightList = () => {
                       </div>
                     ) : (
                       <>
-                        <FlightFilters filterData={filterData} />
+                        <FlightFilters
+                          filterData={filterData}
+                          selectedSort={selectedSort}
+                          setSelectedSort={setSelectedSort}
+                        />
+
                         {/* <FlightDetails flightData={flightData} /> */}
 
                         {filterLoading ? (

@@ -7,11 +7,9 @@ import { Navigation, Pagination } from 'swiper';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const FlightFilters = ({ filterData, selectedSort, setSelectedSort }) => {
-  console.log(filterData, 'ffffffffffffff');
   const [activeTab, setActiveTab] = useState('');
 
   useEffect(() => {
-    // Force Swiper to recognize the custom buttons
     setTimeout(() => {
       document
         .querySelector('.swiper-button-prev-custom')
@@ -22,14 +20,41 @@ const FlightFilters = ({ filterData, selectedSort, setSelectedSort }) => {
     }, 500);
   }, []);
 
+  // Helper function to format time (15:00:00+06:00 -> 3:00 PM)
+  const formatTime = (timeString) => {
+    if (!timeString) return '';
+    const [timePart] = timeString.split('+');
+    const [hours, minutes] = timePart.split(':');
+    const hour = parseInt(hours, 10);
+    const ampm = hour >= 12 ? 'PM' : 'AM';
+    const formattedHour = hour % 12 || 12; // Convert 0 to 12 AM
+    return `${formattedHour}:${minutes} ${ampm}`;
+  };
+
+  // Helper function to format duration (215 -> 3h 35m)
+  const formatDuration = (minutes) => {
+    if (!minutes) return '';
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+    return `${hours}h ${remainingMinutes}m`;
+  };
+
   const tabs = [
     {
       key: 'cheapest',
       label: 'Cheapest',
-      value: `৳${filterData?.minTicketPrice}`,
+      value: `৳${filterData?.minTicketPrice || ''}`,
     },
-    { key: 'earliest', label: 'Earliest', value: '07:15 AM' },
-    { key: 'fastest', label: 'Fastest', value: '2 Hr 5 Min' },
+    {
+      key: 'earliest',
+      label: 'Earliest',
+      value: formatTime(filterData?.minDepartureTime),
+    },
+    {
+      key: 'fastest',
+      label: 'Fastest',
+      value: formatDuration(filterData?.minElapsedTime),
+    },
   ];
 
   const handleSort = (tab) => {
@@ -45,7 +70,7 @@ const FlightFilters = ({ filterData, selectedSort, setSelectedSort }) => {
             key={tab.key}
             className={`d-flex justify-content-between rounded-0 py-3 btn border-blue-1 text-dark flex-fill text-12${
               activeTab === tab.key
-                ? 'active text-14 border-blue-1 bg-blue-1 text-white'
+                ? ' active text-14 border-blue-1 bg-blue-1 text-white'
                 : ''
             }`}
             onClick={() => handleSort(tab)}
@@ -87,8 +112,8 @@ const FlightFilters = ({ filterData, selectedSort, setSelectedSort }) => {
       <div className='position-relative mt-3'>
         <Swiper
           modules={[Navigation, Pagination]}
-          spaceBetween={10} // Increase space between slides
-          slidesPerView={4} // Reduce number of slides per view to make each card wider
+          spaceBetween={10}
+          slidesPerView={4}
           navigation={{
             nextEl: '.swiper-button-next-custom',
             prevEl: '.swiper-button-prev-custom',
@@ -97,8 +122,6 @@ const FlightFilters = ({ filterData, selectedSort, setSelectedSort }) => {
         >
           {filterData?.airplaneList?.map((flight, index) => (
             <SwiperSlide key={index} style={{ width: '250px' }}>
-              {' '}
-              {/* Increase width here */}
               <div
                 className='airline-name p-2 px-40 border bg-light text-center text-12'
                 style={{ minWidth: '250px' }}
@@ -107,7 +130,7 @@ const FlightFilters = ({ filterData, selectedSort, setSelectedSort }) => {
                   <img
                     src={flight.image}
                     alt={flight.name}
-                    style={{ width: '40px', height: '40px' }} // Increased image size
+                    style={{ width: '40px', height: '40px' }}
                   />
                   <div className='text-left'>
                     <strong>{flight.name}</strong>
